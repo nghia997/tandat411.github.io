@@ -1,0 +1,175 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  width: 1263px;
+  margin: 0 auto;
+  line-height: 1;
+  font-family: Verdana,Arial,Helvetica, sans-serif;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* CSS HEADER */
+.header {
+  height: 110px;
+  background-color: #2D2F35;
+  border-bottom: 1px solid #474a51;
+}
+
+/* CSS HOME */
+.home {
+  position: relative;
+  background: url("../imgs/bg_home_intro.gif");
+  height: 300px;
+  border-bottom: 1px solid #474a51;
+}
+
+.home__content {
+  width: 400px;
+  margin-left: 130px;
+  float: left;
+}
+
+.home__content__title {
+  font-size: 25px;
+  color: #ffff00;
+  margin-bottom: 40px;
+}
+.home__content__text {
+  font-size: 13px;
+  color: #cccccc;
+}
+
+.home__content__image {
+  position: absolute;
+  right: 160px;
+}
+
+/* CSS MENU */
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 140px;
+  background-color: #2d2f35;
+  border-bottom: 1px solid #474a51;
+}
+
+.menu__image {
+  position: relative;
+  margin-left: 17px;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* CSS CONTAINER */
+.container {
+  position: relative;
+  height: 378px;
+  padding-top: 5px;
+  background-color: #2d2f35;
+  overflow: hidden;
+  border-bottom: 1px solid #474a51;
+}
+
+.container__title {
+  position: absolute;
+  font-size: 20px;
+  color: #ffff00;
+  z-index: 1;
+}
+
+.container__text {
+  position: absolute;
+  font-size: 13px;
+  color: white;
+  top: 20px;
+  text-align: justify;
+  z-index: 1;
+}
+
+.container--left {
+  position: absolute;
+  height: 100%;
+  width: 400px;
+  left: 130px;
+}
+
+.container__image--left {
+  position: absolute;
+  right: 25px;
+  bottom: 30px;
+}
+
+.right {
+  margin-top: 55px;
+}
+
+.container--right {
+  position: absolute;
+  width: 400px;
+  height: 100%;
+  right: 130px;
+}
+
+.container__image--right {
+  position: absolute;
+  bottom: 30px;
+  top: 0;
+}
+
+/* CSS FOOTER */
+.footer {
+  position: relative;
+  height: 120px;
+  color: white;
+  text-align: center;
+  background: url("../imgs/bg_footer.gif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

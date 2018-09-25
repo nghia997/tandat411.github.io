@@ -85,6 +85,7 @@ table {
 	padding-top: 30px;
 	margin: 0 auto;
 	border-bottom: 1px solid #BDBDBD;
+	box-shadow: 5px 5px 10px;
 }
 
 .container__section__title:before {

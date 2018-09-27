@@ -96,9 +96,12 @@ a {
   padding: 5px 10px 20px 10px;
 }
 
-.content__text {margin-top: 5px;}
+.content__text {
+  display: block;
+  margin-top: 5px;
+}
 
-.container__list > li {
+.container-list__li {
   display: flex;
   align-items: center;
   height: 30px;
@@ -107,7 +110,7 @@ a {
   border-bottom: 1px solid white;
 }
 
-.container__list > li > a{
+.container-list__li a {
   color: #0a6395;
   text-decoration: none;
 }
@@ -136,7 +139,7 @@ a {
 
 .competitions__style {border: 1px solid #ccc;}
 
-.competitions__list a {
+.competitions-list__li a {
   padding: 3px;
   color: #0a6395;
 }

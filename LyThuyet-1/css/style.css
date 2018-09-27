@@ -25,7 +25,8 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-  line-height: 1;
+  line-height: 1.1;
+  font-size: 13px;
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
@@ -46,25 +47,27 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}	
+}
+
+a {text-decoration: none;}
 
 /* CSS CONTAINER */
 .container {
   margin: 0 auto;
   width: 500px;
-  border: 1px solid #0033FF;
+  border: 1px solid #dfdfdf;
 }
 
 .container__title {
-  height: 25px;
   font-weight: bold;
-  line-height: 25px;
+  line-height: 1.9;
   background: url("../imgs/title_background.gif");
 }
 
 .container_info {
   display: flex;
   height: 100px;
+  padding-right: 5px;
 }
 
 .info__avatar {
@@ -82,12 +85,16 @@ table {
 
 .facts__title {
   font-weight: bold;
-  padding: 20px 0 10px 5px;
+  padding-top: 20px;
+  padding-right: 0px;
+  padding-bottom: 10px;
+  padding-left: 3px;
 }
 
-.list-facts {
-  margin-left: 50px;
-  list-style: url("../imgs/star.gif");
+.facts-list {
+  margin-left: 38px;
+  margin-right: 92px;
+  list-style: url("../imgs/start.png");
   list-style-position: inside;
 }
 
@@ -100,15 +107,14 @@ table {
 
 .message__arrow {
   width: 90%;
-  height: 23px;
   content: " ";
-  margin-left: 30px;
+  margin-left: 21px;
   background-image: url("../imgs/comment_bg.gif");
   background-repeat: no-repeat;
-  background-size: 8%;
+  background-size: 27px 12px;
 }
 
-.time {margin-left: 50px;}
+.time {padding: 2px 35px;}
 
 .container__comment {margin-top: 20px;}
 
@@ -120,17 +126,15 @@ table {
 .item {padding: 5px;}
 
 .label {
-  width: 30%;
+  width: 100px;
   float: left;
   clear: both;
 }
 
 .textarea {
   resize: none;
-  width: 65%;
-  height: 100px;
+  width: 384px;
+  height: 85px;
 }
 
-.comment {
-  line-height: 100px;
-}
+.comment {line-height: 6.5;}

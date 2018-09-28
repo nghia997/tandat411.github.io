@@ -55,14 +55,14 @@ a {
   color: #FFF;
 }
 
-.hr__dotted {
+.hr-dotted {
   border-top: 1px dotted #595959;
   border-right: none;
   border-bottom: none;
   border-left: none;
 }
 
-.hr__solid {
+.hr-solid {
   border-top: 1px solid #595959;
   border-right: none;
   border-bottom: none;
@@ -93,7 +93,7 @@ a {
   content: url("../imgs/arr_1.gif");
   float: left;
   margin-top: 1px;
-  margin-right: 2px;
+  margin-right: 5px;
 }
 
 .link-underline {

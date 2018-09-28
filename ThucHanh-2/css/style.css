@@ -27,6 +27,7 @@ footer, header, hgroup, menu, nav, section {
 body {
   width: 985px;
   height: 800px;
+  background: #000;
   margin: 0 auto;
   line-height: 1.2;
   font-family: Arial, serif;
@@ -52,10 +53,15 @@ table {
 }
 
 a {
+  display: block;
   font-family: Georgia, "Times New Roman", Times, serif;
   text-decoration: none;
   color: #2676b5;
 }
+
+.margin-top-14 {margin-top: 14px;}
+
+.margin-top-20 {margin-top: 20px;}
 
 .uppercase {text-transform: uppercase;}
 
@@ -283,7 +289,6 @@ a {
   clear: both;
   height: 80px;
   font-size: 11px;
-  color: #FFF;
   border-top: 1px dotted #FFF;
 }
 
@@ -293,6 +298,7 @@ a {
   align-items: center;
   justify-content: space-around;
   width: 120px;
+  color: #FFF;
   text-align: center;
 }
 

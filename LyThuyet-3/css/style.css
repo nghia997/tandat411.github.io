@@ -26,7 +26,7 @@ footer, header, hgroup, menu, nav, section {
 
 body { 
   line-height: 1;
-  font-family: "Time New Romans", serif;
+  font-family: Arial, serif;
   font-size: 0.6875em;
 }
 
@@ -55,27 +55,11 @@ a {
   color: #FFF;
 }
 
-.hr-dotted {
-  border-top: 1px dotted #595959;
-  border-right: none;
-  border-bottom: none;
-  border-left: none;
-}
-
-.hr-solid {
-  border-top: 1px solid #595959;
-  border-right: none;
-  border-bottom: none;
-  border-left: none;
-}
-
 .margin-top-50 {margin-top: 50px;}
 
 .margin-top-87 {margin-top: 87px;}
 
 .margin-left-16 {margin-left: 16px;}
-
-.margin-right-24 {margin-right: 24px;}
 
 .margin-bottom-10 {margin-bottom: 10px;}
 
@@ -84,8 +68,6 @@ a {
 .margin-bottom-25 {margin-bottom: 25px;}
 
 .margin-bottom-40 {margin-bottom: 40px;}
-
-.float-left {float: left;}
 
 .clear-fix {clear:both;}
 
@@ -117,16 +99,30 @@ a {
   padding: 16px 20px;
 }
 
-.list-item__li {
+.list-item > li {
   margin-top: 16px;
   margin-bottom: 16px;
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px dotted #595959;
+  border-left: none;
+}
+
+.list-item > li:last-child {
+  border: none;
+}
+
+.image-lorem {
+  float: left;
+  margin-bottom: 14px;
+  margin-right: 24px;
 }
 
 .more-info {display: flex;}
 
-.list__li{padding-bottom: 10px;}
+.info-list li {padding-bottom: 10px;}
 
-.list__li:before {
+.info-list li:before {
   content: " ";
   display: block;
   float: left;
@@ -148,6 +144,7 @@ a {
   margin-bottom: 40px;
   margin-left: 30px;
   margin-right: 25px;
+  border-top: 1px solid #595959;
 }
 
 .content-image {
@@ -155,5 +152,7 @@ a {
   margin-top: 27px;
   margin-bottom: 22px;
 }
+
+.color-habitasse {color: #767884;}
 
 .content__text {margin-left: 10px;}

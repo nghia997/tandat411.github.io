@@ -3,7 +3,7 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
-b, i, u, center,
+b, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
@@ -86,8 +86,6 @@ a {
   border-top: 3px solid #ffa500;
 }
 
-.line {border: 1px solid #ccc;}
-
 /* CSS CONTAINER */
 .container {
   width: 320px;
@@ -101,7 +99,7 @@ a {
   margin-top: 5px;
 }
 
-.container-list__li {
+.container-list li {
   display: flex;
   align-items: center;
   height: 30px;
@@ -110,7 +108,7 @@ a {
   border-bottom: 1px solid white;
 }
 
-.container-list__li a {
+.container-list a {
   color: #0a6395;
   text-decoration: none;
 }
@@ -126,7 +124,9 @@ a {
 
 .container__news {
   margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #595959;
 }
 
 .news__style {
@@ -137,9 +137,9 @@ a {
   padding-left: 25px;
 }
 
-.competitions__style {border: 1px solid #ccc;}
+.competitions-list {border: 1px solid #595959;}
 
-.competitions-list__li a {
+.competitions-list a {
   padding: 3px;
-  color: #0a6395;
+  color: #4d5d73;
 }

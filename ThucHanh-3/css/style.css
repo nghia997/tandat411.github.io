@@ -59,23 +59,9 @@ a {
 
 .padding-left-12 {padding-left: 12px;}
 
-.margin-top-27 {margin-top: 27px;}
+.padding-top-27 {padding-top: 27px;}
 
 .margin-bottom-70 {margin-bottom: 70px;}
-
-.hr-solid {
-  border-top: 1px solid;
-  border-right: none;
-  border-bottom: none;
-  border-left: none;
-}
-
-.hr-dotted {
-  border-top: 1px dotted;
-  border-right: none;
-  border-bottom: none;
-  border-left: none;
-}
 
 .link:before {
   content: url("../imgs/arr_1.gif");
@@ -120,7 +106,7 @@ a {
   bottom: 8px;
 }
 
-.header__option-list__li {
+.header__option-list li {
   text-align: center;
   margin-right: 6px;
 }
@@ -144,9 +130,19 @@ a {
   padding-left: 21px;
 }
 
-.info-list {padding-left: 21px;}
+.info__text {
+  padding-left: 12px;
+  padding-top: 27px;
+  margin-bottom: 70px;
+  border-top: 1px solid #7e7e7e;
+}
 
-.info-list__li:before {
+.info-list {
+  padding-left: 21px;
+  border-top: 1px solid #2c2c2c;
+}
+
+.info-list li:before {
   content: " ";
   display: block;
   float: left;
@@ -159,7 +155,7 @@ a {
   clear: both;
 }
 
-.info-list__li a {
+.info-list li a {
   line-height: 2.18;
   color: #595959;
   text-decoration: underline;
@@ -182,6 +178,12 @@ a {
 
 .row__text hr {margin: 16px 0;}
 
+.border-dotted {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px dotted #2c2c2c;
+}
+
 .input-text {
   max-width: 114px;
   max-height: 19px;
@@ -193,9 +195,10 @@ a {
 .container__footer {
   width: 660px;
   color: #767884;
+  margin-top: 25px;
+  padding-top: 25px;
   margin-left: 70px;
+  border-top: 1px dotted #2c2c2c;
 }
-
-.container__footer hr {margin: 25px 0;}
 
 .container__footer p {padding-bottom: 66px;}

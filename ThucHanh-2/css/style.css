@@ -118,7 +118,7 @@ a {
   background: url("../imgs/h2-confidential-heading-bg.gif");
 }
 
-.title-list__li {
+.title-list li {
   width: 50%;
   height: 26px;
   color: #FFF;
@@ -128,7 +128,7 @@ a {
   border-right: 1px solid #95000e;
 }
 
-.title-list__li:last-child {
+.title-list li:last-child {
   border-right: none;
 }
 
@@ -244,13 +244,13 @@ a {
 
 .reviews__title {background: url("../imgs/review__bg.png");}
 
-.reviews-list__li {
+.reviews-list li {
   padding-top: 5px;
   padding-right: 9px;
   border-bottom: 1px dotted #9f9f9f;
 }
 
-.reviews-list__li > a {margin-left: 9px;}
+.reviews-list li > a {margin-left: 9px;}
 
 .rating {float: right;}
 
@@ -312,13 +312,13 @@ a {
   padding-left: 90px;
 }
 
-.contact-list__li {
+.contact-list li {
   float: left;
   padding: 0 5px;
   border-right: 1px solid #2676b5;
 }
 
-.contact-list__li:last-child {border-right: none;}
+.contact-list li:last-child {border-right: none;}
 
 .footer__contact p {
   clear: both;

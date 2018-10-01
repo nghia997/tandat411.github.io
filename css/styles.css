@@ -63,13 +63,13 @@ table {
   margin: 0 auto;
 }
 
-.content__header__image {
+.content__image {
   width: 150px;
   height: 150px;
   border-radius: 100%;
 }
 
-.content__header__title {
+.content__title {
   margin: 0 auto;
   font-size: 80px;
   color: white;
@@ -88,7 +88,7 @@ table {
   box-shadow: 5px 5px 10px;
 }
 
-.container__section__title:before {
+.section__title:before {
   content: "<>";
   font-family: cursive;
   margin-right: 30px;
@@ -96,13 +96,13 @@ table {
   color: #FF4081;
 }
 
-.container__section__title {
+.section__title {
   font-size: 50px;
   color: #757575;
   font-family: cursive;
 }
 
-.container__section-list {
+.section-list {
   list-style-type: circle;
   list-style-position: inside;
   padding: 30px; 

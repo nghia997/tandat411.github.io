@@ -50,6 +50,8 @@ table {
   border-spacing: 0;
 }
 
+a {display: block;}
+
 /* CSS HEADER */
 .header {
   height: 110px;
@@ -71,17 +73,17 @@ table {
   float: left;
 }
 
-.home__content__title {
+.content__title {
   font-size: 25px;
   color: #ffff00;
   margin-bottom: 40px;
 }
-.home__content__text {
+.content__text {
   font-size: 13px;
   color: #cccccc;
 }
 
-.home__content__image {
+.content__image {
   position: absolute;
   right: 160px;
 }

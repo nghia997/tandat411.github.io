@@ -55,6 +55,7 @@ a {
 }
 
 .title {
+  display: inline-block;
   font-weight: bold;
   color: #0162af;
 }

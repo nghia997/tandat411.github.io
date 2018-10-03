@@ -70,10 +70,10 @@ a {text-decoration: none;}
   position: absolute;
   width: 418px;
   height: 48px;
-  background: url("../images/mango_btn_off.png");
+  background: url("../images/btn_mango_off.png");
   z-index: 1;
   &:hover {
-    background: url("../images/mango_btn_on.png");
+    background: url("../images/btn_mango_on.png");
   }
 }
 

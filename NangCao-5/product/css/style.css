@@ -158,7 +158,7 @@ a,
     flex-wrap: wrap;
 }
 
-.price__item {
+.container__price li {
     position: relative;
 }
 

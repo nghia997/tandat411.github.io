@@ -49,7 +49,12 @@ table {
   border-spacing: 0;
 }
 
-a {text-decoration: none;}
+a {
+   display: inline-block;
+  text-decoration: none;
+}
+
+/* CSS CONTAINER */
 
 .container {
   position: relative;
@@ -61,6 +66,7 @@ a {text-decoration: none;}
 
 .container__price {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .price__item {position: relative;}
@@ -77,26 +83,57 @@ a {text-decoration: none;}
   }
 }
 
-.btn_1 {
+.container__price li:nth-child(odd) a {
   @extend .btn;
   bottom: 25px;
   left: 115px;
 }
 
-.btn_3 {
-  @extend .btn;
-  bottom: 36px;
-  left: 115px;
-}
-
-.btn_2 {
+.container__price li:nth-child(even) a {
   @extend .btn;
   bottom: 25px;
   right: 119px;
 }
 
-.btn_4 {
-  @extend .btn;
-  bottom: 36px;
-  right: 119px;
+.container__link {position: relative;}
+
+.container__link > a {
+  @extend a;
+  position: absolute;
 }
+
+.cow-top {
+  right: 78px;
+  bottom: 68px;
+  width: 175px;
+  height: 30px;
+}
+
+$height: 15px;
+
+.link__footer {
+  position: absolute;
+  display: flex;
+  width: 365px;
+  height: $height;
+  bottom: 30px;
+  margin-left: 78px;
+}
+
+.link-type-1 {
+  width: 55px;
+  height: $height;
+}
+
+.link-type-2 {
+  width: 133px;
+  height: $height;
+  margin-left: 25px;
+}
+
+.link-type-3 {
+  width: 121px;
+  height: $height;
+  margin-left: 25px;
+}
+

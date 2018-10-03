@@ -164,7 +164,7 @@ a {
     position: absolute;
     width: 418px;
     height: 48px;
-    background: url("../images/btn_mango_off.png");
+    background: url("../images/btn_mango_on.png");
     z-index: 1;
 }
 
@@ -173,7 +173,7 @@ a {
 .btn_3:hover,
 .btn_2:hover,
 .btn_4:hover {
-    background: url("../images/btn_mango_on.png");
+    background: url("../images/btn_mango_off.png");
 }
 
 .btn_1 {

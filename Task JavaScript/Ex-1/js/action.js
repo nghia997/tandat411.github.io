@@ -4,6 +4,8 @@ $(document).ready(function () {
 	var list  	 = $('#list');
 	var maxLength= 30;
 
+	str.focus();
+
 	btnAdd.click(function () {
 		var name = str.val().trim();
 
@@ -19,8 +21,18 @@ $(document).ready(function () {
 			str.focus();
             return false;
 		}
+
+		for (var i = 0; i < list.children().length; i++) {
+			var posLi = list.children()[i].innerText;
+			var sub = posLi.substr(0, posLi.length - 1);
+			
+			if (name.toUpperCase() == sub.toUpperCase()) {
+				alert('This name was already exist!');
+				return false;
+			}
+		}
 		
-		list.append('<li class="item"><span>' + ' </span>' + name + '<button id="js-btn-remove"> X</button></li>');
+		list.append('<li class="item">' + name + '<button id="js-btn-remove"> X</button></li>');
 		str.val('');
 		str.focus();
 	});

@@ -51,5 +51,7 @@ table {
 
 /* CSS CONTAINER */
 .container {
-  background: url('../imgs/bg_itm_lineup.jpg');
+  background: url('../imgs/bg_itm_lineup.jpg') no-repeat;
+  background-position: center;
+  height: 600px;
 }

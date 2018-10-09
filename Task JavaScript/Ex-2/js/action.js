@@ -1,22 +1,55 @@
 $(document).ready(function () {
-	var imgOff = $('.js-img-off');
-	var imgOn  = $('.js-img-on');
+	var imgOff  = $('.js-img-off');
+	var imgOn   = $('.js-img-on');
 	var content = $('.js-content');
-	
+	var imgAbout= $('.js-img-about');
+	var popup   = $('.js-popup');
+	var imgClose= $('.js-img-close');
+
+	// setTimeout when user click many time
+	function multiClick(element) {
+		element.css('pointer-events', 'none');
+		setTimeout(function () {
+			element.css('pointer-events', 'auto');
+		}, 500);
+	}
+
+	// Set animate the popup when user click on image off
 	imgOff.click(function () {
+		var parent = $(this).parent();
+		multiClick(imgOn);
 		content.animate({height: '0px'}, "fast").hide("fast");
 		imgOff.show();
 		imgOn.hide();
-
-		$(this).parent().find(imgOff).hide();
-		$(this).parent().find(imgOn).show();
-		$(this).parent().find(content).show(1);
-		$(this).parent().find(content).animate({height: '180px'});
+		
+		parent.find(imgOff).hide();
+		parent.find(imgOn).show();
+		parent.find(content).show(1);
+		parent.find(content).animate({height: '180px'});
 	});
 
+	// Set animate the popup when user click on image on
 	imgOn.click(function () {
-		$(this).parent().find(imgOff).show();
-		$(this).parent().find(imgOn).hide();
-		$(this).parent().find(content).animate({height: '0px'}).hide("fast");
+		var parent = $(this).parent();
+		multiClick(imgOff);
+		parent.find(imgOff).show();
+		parent.find(imgOn).hide();
+		parent.find(content).animate({height: '0px'}).hide("fast");
 	});
-})
+
+	// Set CSS and Animate the popup when user click on image About
+	imgAbout.click(function () {
+		var parent = $(this).parent().parent();
+		imgOn.css('pointer-events', 'none');
+		imgOff.css('pointer-events', 'none');
+		parent.find(popup).animate({top: '100px'}, 1000).show();
+	});
+
+	// Set CSS the popup when user click on image Close
+	imgClose.click(function () {
+		var parent = $(this).parent().parent();
+		imgOn.css('pointer-events', 'auto');
+		imgOff.css('pointer-events', 'auto');
+		popup.css('top', '-400px').hide();
+	});
+});

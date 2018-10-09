@@ -55,6 +55,7 @@ img {width: 100%;}
 
 /* CSS CONTAINER */
 .container {
+  position: relative;
   background: #FFF;
   width: 40%;
   min-height: 500px;
@@ -71,11 +72,9 @@ img {width: 100%;}
 
 .list-item li {cursor: pointer;}
 
-.list-item li:last-child {
-  border-bottom: 1px solid #a37e23;
-}
+.list-item li:last-child {border-bottom: 1px solid #a37e23;}
 
-.js-content {
+.content {
   line-height: 1;
   cursor: default;
   display: none;
@@ -84,7 +83,7 @@ img {width: 100%;}
   border-right: 1px solid #a37e23;
 }
 
-.js-content span {
+.content span {
   display: block;
   margin-bottom: 10px;
   padding-top: 20px;
@@ -93,7 +92,7 @@ img {width: 100%;}
   text-transform: uppercase;
 }
 
-.js-content img {
+.content img {
   cursor: pointer;
   display: block;
   width: auto;
@@ -102,3 +101,41 @@ img {width: 100%;}
 }
 
 .js-img-on {display: none;}
+
+.popup {
+  display: none;
+  cursor: default;
+  line-height: 1;
+  position: absolute;
+  top: -400px;
+  left: 70px;
+  width: 65%;
+  height: auto;
+  padding: 0 20px;
+  border: 2px solid #a37e23;
+  background: #FFF;
+}
+
+.popup span {
+  display: block;
+  margin-bottom: 10px;
+  padding-top: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.popup img {
+  display: block;
+  padding: 20px 0;
+  margin: 0 auto;
+  width: auto;
+}
+
+.popup .img-close {
+  cursor: pointer;
+  position: absolute;
+  top: -23px;
+  right: -23px;
+  padding: 0;
+}

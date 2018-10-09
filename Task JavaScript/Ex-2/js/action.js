@@ -25,7 +25,7 @@ $(document).ready(function () {
 		parent.find(imgOff).hide();
 		parent.find(imgOn).show();
 		parent.find(content).show(1);
-		parent.find(content).animate({height: '180px'});
+		parent.find(content).animate({height: '200px'});
 	});
 
 	// Set animate the popup when user click on image on

@@ -49,8 +49,6 @@ table {
   border-spacing: 0;
 }
 
-
-
 /* Màu viền: #a37e23 */
 
 /* CSS CONTAINER */
@@ -99,8 +97,8 @@ table {
 .content img {
   cursor: pointer;
   display: block;
-  margin: 0 auto;
-  padding: 10px 0;
+  margin: 10px auto;
+
 }
 
 .js-img-on {display: none;}

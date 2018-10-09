@@ -67,12 +67,8 @@ table {
   display: flex;
   width: 650px;
   margin: 0 auto;
+  overflow: hidden;
 }
-
-/* .slide__list li {
-  width: 650px;
-  margin: 0 auto;
-} */
 
 .slide__prev {
   cursor: pointer;
@@ -85,4 +81,15 @@ table {
   position: absolute;
   top: 50%;
   right: 0;
+}
+
+.thumbnails {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.thumbnails li {
+  cursor: pointer;
+  margin-left: 20px;
 }

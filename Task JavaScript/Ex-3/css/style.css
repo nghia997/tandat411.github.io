@@ -53,5 +53,36 @@ table {
 .container {
   background: url('../imgs/bg_itm_lineup.jpg') no-repeat;
   background-position: center;
+  width: 950px;
   height: 600px;
+  margin: 0 auto;
+}
+
+.slide {
+  position: relative;
+  padding-top: 100px;
+}
+
+.slide__list {
+  display: flex;
+  width: 650px;
+  margin: 0 auto;
+}
+
+/* .slide__list li {
+  width: 650px;
+  margin: 0 auto;
+} */
+
+.slide__prev {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+}
+
+.slide__next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0;
 }

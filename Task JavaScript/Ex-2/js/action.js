@@ -22,7 +22,7 @@ $(document).ready(function () {
 		imgOff.show();
 		imgOn.hide();
 		
-		parent.find(imgOff).hide();
+		$(this).hide();
 		parent.find(imgOn).show();
 		parent.find(content).show(1);
 		parent.find(content).animate({height: '200px'});
@@ -33,7 +33,7 @@ $(document).ready(function () {
 		var parent = $(this).parent();
 		multiClick(imgOff);
 		parent.find(imgOff).show();
-		parent.find(imgOn).hide();
+		$(this).hide();
 		parent.find(content).animate({height: '0px'}).hide("fast");
 	});
 
@@ -47,7 +47,6 @@ $(document).ready(function () {
 
 	// Set CSS the popup when user click on image Close
 	imgClose.click(function () {
-		var parent = $(this).parent().parent();
 		imgOn.css('pointer-events', 'auto');
 		imgOff.css('pointer-events', 'auto');
 		popup.css('top', '-400px').hide();

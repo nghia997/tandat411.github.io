@@ -51,6 +51,7 @@ table {
 
 /* CSS CONTAINER */
 .container {
+  position: relative;
   background: url('../imgs/bg_itm_lineup.jpg') no-repeat;
   background-position: center;
   width: 950px;
@@ -58,16 +59,14 @@ table {
   margin: 0 auto;
 }
 
-.slide {
-  position: relative;
-  padding-top: 100px;
-}
+.slide {padding-top: 100px;}
 
 .slide__list {
+  position: absolute;
   display: flex;
+ 
   width: 650px;
   margin: 0 auto;
-  overflow: hidden;
 }
 
 .slide__prev {
@@ -84,9 +83,11 @@ table {
 }
 
 .thumbnails {
+  position: absolute;
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  bottom: 0;
 }
 
 .thumbnails li {

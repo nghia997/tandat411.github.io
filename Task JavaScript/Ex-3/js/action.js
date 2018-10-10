@@ -16,7 +16,7 @@ $(document).ready(function () {
 	btnPrev.click(function () {
 		count -= 1;
 		if(count < 0) {count = maxLength - 1;}
-		listItems.children().hide();
+		//listItems.children().hide();
 		listItems.children().eq(count).show();
 		setOpacity(count);
 	});
@@ -24,8 +24,7 @@ $(document).ready(function () {
 	btnNext.click(function () {
 		count += 1;
 		if(count > 4) {count = 0;}
-		listItems.children().hide();
-		listItems.children().eq(count).show();
+		listItems.animate({right: "+=650px"});
 		setOpacity(count);
 	});
 

@@ -11,7 +11,7 @@ $(document).ready(function () {
 		element.css('pointer-events', 'none');
 		setTimeout(function () {
 			element.css('pointer-events', 'auto');
-		}, 300);
+		}, 1000);
 	}
 
 	// Set animate the popup when user click on image off

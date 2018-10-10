@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	var container = $('.js-container');
 	var btnPrev   = $('#btn-prev');
 	var btnNext   = $('#btn-next');
 	var listItems = $('#js-list-item');
@@ -10,11 +11,15 @@ $(document).ready(function () {
 
 	// Set CSS the first li in list Thumbnails with opacity: 0.5 
 	listThumbs.children('li:first').css('opacity', '0.5');
+
 	/* Event click on button previous
 	   input: none,
-	   output: The image slide to previous image and reset setInterval().
+	   output: The image slide to previous image,
+	    reset setInterval(),
+	    user can't click on previous button many time.
 	*/
 	btnPrev.click(function () {
+		multiClick();
 		clearInterval(autoPlay);
 		previousClick();
 		autoPlay = autoSlide();
@@ -22,9 +27,12 @@ $(document).ready(function () {
 
 	/* Event click on button next
 	   input: none,
-	   output: The image slide to next image and reset setInterval().
+	   output: The image slide to next image,
+	   		reset setInterval(),
+	   		user can't click on next button many time..
 	*/
 	btnNext.click(function () {
+		multiClick();
 		clearInterval(autoPlay);
 		nextClick();
 		autoPlay = autoSlide();
@@ -34,9 +42,11 @@ $(document).ready(function () {
 	   input: none,
 	   output: Change CSS on tag <li> selected, 
 	   		in tag <ul> list item slide to image with position of tag <li> selected,
-	   		reset setInterval().
+	   		reset setInterval(),
+	   		user can't click on image of tag <li> in tag <ul> thumbnails many time..
 	*/
 	$(document).on('click', '#js-list-thumb li', function () {
+		multiClick();  
 		clearInterval(autoPlay); 	// Stop setInterval()
 		position = $(this).index();		// Get position of current tag <li>
 		var distance = position * view;	// Get the distance from first <li> to current <li>
@@ -44,6 +54,17 @@ $(document).ready(function () {
 		listItems.animate({left: -distance});  // Set animate slide to current <li> with left -= distance
 		autoPlay = autoSlide();  // Start setInterVal()
 	});
+
+	/* Set timeout when user click many time with CSS pointer-events
+		Input: none,
+		Output: User can't click any button in class container.
+	*/
+	function multiClick() {
+		container.css('pointer-events', 'none');
+		setTimeout(function () {
+			container.css('pointer-events', 'auto');
+		}, 1000);
+	}
 
 	function autoSlide() {
 		var autoPlay  = setInterval(function () {nextClick();}, 3000); // Slide to next image in 3s

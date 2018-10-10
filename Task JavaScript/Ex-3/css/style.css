@@ -59,13 +59,18 @@ table {
   margin: 0 auto;
 }
 
-.slide {padding-top: 100px;}
+.slide {
+  position: absolute;
+  padding-top: 100px;
+  width: 650px;
+  overflow: hidden;
+  height: 600px;
+  left: 15%;
+}
 
 .slide__list {
   position: absolute;
   display: flex;
- 
-  width: 650px;
   margin: 0 auto;
 }
 
@@ -73,13 +78,14 @@ table {
   cursor: pointer;
   position: absolute;
   top: 50%;
+  left: 5%;
 }
 
 .slide__next {
   cursor: pointer;
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 5%;
 }
 
 .thumbnails {
@@ -88,6 +94,7 @@ table {
   justify-content: center;
   margin-top: 20px;
   bottom: 0;
+  left: 15%;
 }
 
 .thumbnails li {

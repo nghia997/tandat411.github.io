@@ -8,8 +8,10 @@ $(document).ready(function () {
 
 	// setTimeout when user click many time
 	function multiClick(element) {
+		imgOff.css('pointer-events', 'none');
 		element.css('pointer-events', 'none');
 		setTimeout(function () {
+			imgOff.css('pointer-events', 'auto');
 			element.css('pointer-events', 'auto');
 		}, 1000);
 	}

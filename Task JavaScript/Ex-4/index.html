@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bài tập JS - Đề 4</title>
   <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -17,17 +18,21 @@
       	<li><img src="imgs/item_navi_04_sp_close.png" alt="menu-item-1"></li>
       	<li><img src="imgs/item_navi_05_sp_close.png" alt="menu-item-1"></li>
       </ul>
-      <img class="btn-previous" id="js-btn-previous" src="imgs/arrow_l_off.png" alt="arrow-left">
-      <div class="view" id="js-view">
-      	<ul class="list-item js-list-item">
-      	<li><img src="imgs/item_01_sp.png" alt="item-1"></li>
-      	<li><img src="imgs/item_02_sp.png" alt="item-2"></li>
-      	<li><img src="imgs/item_03_sp.png" alt="item-3"></li>
-      	<li><img src="imgs/item_04_sp.png" alt="item-4"></li>
-      	<li><img src="imgs/item_05_sp.png" alt="item-5"></li>
-      </ul>
+      <div class="slide">
+        <img class="btn-previous" id="js-btn-previous" src="imgs/arrow_l_off.png" alt="arrow-left">
+        <img class="btn-next" id="js-btn-next" src="imgs/arrow_r_off.png" alt="arrow-right">
       </div>
-      <img class="btn-next" id="js-btn-next" src="imgs/arrow_r_off.png" alt="arrow-right">
+      <div class="view">
+        <div class="view__show" id="js-view__show">
+          <ul class="list-item js-list-item">
+            <li><img src="imgs/item_01_sp.png" alt="item-1"></li>
+            <li><img src="imgs/item_02_sp.png" alt="item-2"></li>
+            <li><img src="imgs/item_03_sp.png" alt="item-3"></li>
+            <li><img src="imgs/item_04_sp.png" alt="item-4"></li>
+            <li><img src="imgs/item_05_sp.png" alt="item-5"></li>
+          </ul>
+      </div>
+      </div>
   	</div>
   </div>
   <!-- SCRIPT -->

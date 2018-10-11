@@ -52,12 +52,15 @@ table {
 /* CSS CONTAINER */
 .container {
   background: #FFF;
-  width: 40%;
+  width: 100%;
+  max-width: 550px;
   margin: 0 auto;
   box-shadow: 0 0 10px #dedede;
 }
 
 .row {
+  width: 100%;
+  max-width: 550px;
   position: relative;
   height: 685px;
   border-top: 15px solid #eede8d;
@@ -66,6 +69,7 @@ table {
 
 .container__title {
   display: block;
+  width: 30%;
   margin: 10px auto;
 }
 
@@ -73,29 +77,56 @@ table {
   cursor: pointer;
   position: absolute;
   left: 25%;
+  right: 25%;
   z-index: 1;
   line-height: 0;
 }
 
+.list-menu li img {
+  width: 100%;
+  max-width: 269px;
+}
+
 .view {
+  margin-top: -10%;
+  position: relative;
+}
+
+.view__show {
   position: absolute;
-  display: flex;
   overflow: hidden;
-  width: 320px;
+  max-width: 320px;
   height: 544px;
-  margin: 0 auto;
   left: 20%;
+  right: 20%;
   top: 20%;
 }
 
 .list-item {
+  width: 100%;
   display: flex;
   position: absolute;
+}
+
+.list-item li {
+  width: 100%;
+  min-width: 320px;
+}
+
+.list-item li img {
+  position: absolute;
+  width: 100%;
+}
+
+.slide {
+  margin-top: 25%;
+  position: relative;
 }
 
 .btn-previous {
   cursor: pointer;
   position: absolute;
+  width: 10%;
   top: 30%;
   left: 5%;
 }
@@ -103,6 +134,7 @@ table {
 .btn-next {
   cursor: pointer;
   position: absolute;
+  width: 10%;
   top: 30%;
   right: 5%;
 }

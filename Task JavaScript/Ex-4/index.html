@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>Bài tập JS - Đề 4</title>
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="container">
   	<div class="row">
   	  <img class="container__title" src="imgs/Line-up.png" alt="line-up">
-      <div class="container__content">
       <ul class="list-menu js-list-menu">
-      	<li><img src="imgs/item_navi_01_sp_open.png" alt="menu-item-1"></li>
+      	<li><img src="imgs/item_navi_01_sp_open.png"  alt="menu-item-1"></li>
       	<li><img src="imgs/item_navi_02_sp_close.png" alt="menu-item-1"></li>
       	<li><img src="imgs/item_navi_03_sp_close.png" alt="menu-item-1"></li>
       	<li><img src="imgs/item_navi_04_sp_close.png" alt="menu-item-1"></li>
       	<li><img src="imgs/item_navi_05_sp_close.png" alt="menu-item-1"></li>
       </ul>
-      <img class="btn-previous js-btn-previous" src="imgs/arrow_l_off.png" alt="arrow-left">
-      <div class="view">
-      	<ul class="list-info">
+      <img class="btn-previous" id="js-btn-previous" src="imgs/arrow_l_off.png" alt="arrow-left">
+      <div class="view" id="js-view">
+      	<ul class="list-item js-list-item">
       	<li><img src="imgs/item_01_sp.png" alt="item-1"></li>
       	<li><img src="imgs/item_02_sp.png" alt="item-2"></li>
       	<li><img src="imgs/item_03_sp.png" alt="item-3"></li>
@@ -27,14 +27,13 @@
       	<li><img src="imgs/item_05_sp.png" alt="item-5"></li>
       </ul>
       </div>
-        <img class="btn-next js-btn-next" src="imgs/arrow_r_off.png" alt="arrow-right">
-      </div>
+      <img class="btn-next" id="js-btn-next" src="imgs/arrow_r_off.png" alt="arrow-right">
   	</div>
-  	
   </div>
-
   <!-- SCRIPT -->
   <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery.mobile-1.4.5.min.js"></script>
   <script src="js/action.js"></script>
 </body>
 </html>

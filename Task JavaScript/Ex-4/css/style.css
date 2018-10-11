@@ -59,7 +59,7 @@ table {
 
 .row {
   position: relative;
-  height: 655px;
+  height: 685px;
   border-top: 15px solid #eede8d;
   border-bottom: 15px solid #eede8d;
 }
@@ -69,13 +69,12 @@ table {
   margin: 10px auto;
 }
 
-.container__content {
-  text-align: center;
-}
-
 .list-menu {
-  display: inline-block;
   cursor: pointer;
+  position: absolute;
+  left: 25%;
+  z-index: 1;
+  line-height: 0;
 }
 
 .view {
@@ -83,12 +82,16 @@ table {
   display: flex;
   overflow: hidden;
   width: 320px;
+  height: 544px;
   margin: 0 auto;
   left: 20%;
+  top: 20%;
 }
 
-.list-info {display: flex;}
-
+.list-item {
+  display: flex;
+  position: absolute;
+}
 
 .btn-previous {
   cursor: pointer;

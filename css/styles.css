@@ -50,6 +50,8 @@ table {
   border-spacing: 0;
 }	
 
+h3 {margin-bottom: 10px;}
+
 /* CSS Header */
 .header {
   height: 150px;

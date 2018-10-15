@@ -7,8 +7,8 @@
 		color: "gray" // color of text
 	}
 	var data = {
-		success: 0.8,   // data of text success
-		fail: 0.2 // data of text fail
+		success: 0.2,   // data of text success
+		fail: 0.5 // data of text fail
 	};
 
 	var color = {

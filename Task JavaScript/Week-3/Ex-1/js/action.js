@@ -1,52 +1,61 @@
 $(document).ready(function () {
-	var canvas = $('#js-canvas').get(0);
-	var context = canvas.getContext('2d');
-	var pi = Math.PI;
-	var x = canvas.width / 2;
-	var y = canvas.height / 2;
-	var scaleX = 1;
-	var scaleY = 0.4;
-	var radius = 200;
-	var distance = 20;
+	var canvas   = $('#js-canvas').get(0);
+	var context  = canvas.getContext('2d');
+	var pi       = Math.PI;
+	var x        = canvas.width / 2; // Center X of circle
+	var y        = canvas.height / 2; // Center Y of circle
+	var scaleX   = 1;
+	var scaleY   = 0.4; // scale with point Y to make circle become eclipe
+	var radius   = 200; // Radius of circle
+	var distance = 20; // distance between fail and success
 
+	// Start draw 3D Pie chart
 	draw();
 
+	// Function draw 3D Pie chart
 	function draw()
 	{
-		if (data.success > 1 || data.fail > 1 || (data.success == 1 && data.fail == 1)
-			|| (data.success == 1 && data.fail > 0) || (data.fail == 1 && data.success > 0)) {
+		// Validate the value success and value fail
+		if (((data.success + data.fail) < 1) || ((data.success + data.fail) > 1)) {
 			alert('Wrong value success or value fail');
 			return false;
 		}
 
+		/*	if value success > fail: draw Fail below Success with distance
+			else value success >= fail: draw Success below Fail with distance
+		*/
 		if (data.success > data.fail) {
-			if (data.success == 1) {
-				for(var i = 100; i > 0; i--) {drawSuccess(i, 0);}
-				drawLineSuccess();
-			} else {
-				for(var i = 100; i > 0; i--) {
+			for(var i = 100; i > 0; i--) {
 					drawSuccess(i, 0);
 					drawFail(i, distance);
 				}
-				drawLineSuccess();
-				drawLineFail();
-			}
 		} else {
-			if (data.fail == 1) {
-				for(var i = 100; i > 0; i--) {drawFail(i, 0);}
-				drawLineFail();
-			} else {
-				for(var i = 100; i > 0; i--) {
+			for(var i = 100; i > 0; i--) {
 					drawSuccess(i, distance);
 					drawFail(i, 0);
-				}
-				drawLineSuccess();
-				drawLineFail();
 			}
 		}
-		drawTitle();
+
+		/*	if value success = 1: draw line and text of Success
+			if value fail = 1: draw line and text of Fail
+			else: draw line and text both of them
+		*/
+		if (data.success == 1) {drawLineSuccess();}
+		else if (data.fail == 1){drawLineFail();}
+		else {
+			drawLineSuccess();
+			drawLineFail();
+		}
+
+		drawTitle(); // draw the title for this Pie chart
 	}
 
+	/*
+		- Input: a value to set position for overload Success cicle,
+				distance to set height distance with Fail circle.
+		- Output: draw 3D Success circle distance with Fail circle,
+				color is dark blue on top and blue below.
+	*/
 	function drawSuccess(value, distance) 
 	{
 		var startAngle = (data.success == 0.5) ? x : x + distance;
@@ -61,6 +70,12 @@ $(document).ready(function () {
 		context.restore(); // Return back to this state
 	}
 
+	/*
+		- Input: a value to set position for overload Fail cicle,
+				distance to set height distance with Success circle.
+		- Output: draw 3D Fail circle distance with Success circle,
+				color is dark red on top and red below.
+	*/
 	function drawFail(value, distance) 
 	{
 		startAngle = x + distance;
@@ -75,17 +90,23 @@ $(document).ready(function () {
 		context.restore(); // Return back to this state
 	}
 
-	function drawLineSuccess() {
-		var alpha = pi * data.success;
-		var xEnd = x + (radius * Math.cos(alpha));
-		var yEnd = y + (radius * Math.sin(alpha));
-		var xPos = (x + xEnd) / 2;
-		var yPos = ((y + yEnd) / 2) * scaleY;
+	/*
+		- Input: none.
+		- Output: draw a line with color is blue,
+				draw a text with data and text: ĐÃ ĐẠT in file "data.js".
+	*/
+	function drawLineSuccess() 
+	{
+		var alpha     = pi * data.success;
+		var xEnd      = x + (radius * Math.cos(alpha));
+		var yEnd      = y + (radius * Math.sin(alpha));
+		var positionX = (x + xEnd) / 2;
+		var positionY = ((y + yEnd) / 2) * scaleY;
 
 		context.beginPath();
 		context.moveTo(x / 5, y / 5);
 		context.lineTo(x / 2, y / 5);
-		context.lineTo(xPos + 70, yPos + 7);
+		context.lineTo(positionX + 70, positionY + 7);
 		context.strokeStyle = color.blue;
 		context.lineWidth = 3;
 		context.stroke();
@@ -97,31 +118,44 @@ $(document).ready(function () {
 		context.fill();
 	}
 
-	function drawLineFail() {
-		var alpha = 2 * pi - (pi * data.fail);
-		var xEnd = x + (radius * Math.cos(alpha));
-		var yEnd = y + (radius * Math.sin(alpha));
-		var xPos = (x + xEnd) / 2;
-		var yPos = ((y + yEnd) / 2) * scaleY;
+	/*
+		- Input: none.
+		- Output: draw a line with color is red,
+				draw a text with data and text: CHƯA ĐẠT in file "data.js".
+	*/
+	function drawLineFail() 
+	{
+		var alpha     = 2 * pi - (pi * data.fail);
+		var xEnd      = x + (radius * Math.cos(alpha));
+		var yEnd      = y + (radius * Math.sin(alpha));
+		var positionX = (x + xEnd) / 2;
+		var positionY = ((y + yEnd) / 2) * scaleY;
 
 		context.beginPath();
-		context.moveTo(x + (x*0.7), y / 5);
-		context.lineTo(x + (x*0.4), y / 5);
-		context.lineTo(xPos + 50, yPos - 5);
+		context.moveTo(x + (x * 0.7), y / 5);
+		context.lineTo(x + (x * 0.4), y / 5);
+		context.lineTo(positionX + 50, positionY - 5);
 		context.strokeStyle = color.red;
-		context.lineWidth = 3;
+		context.lineWidth   = 3;
 		context.stroke();
 
 		context.beginPath();
-		context.font = text.font;
+		context.font      = text.font;
 		context.fillStyle = text.color;
-		context.fillText((data.fail * 100) + "% " + text.fail, x + (x*0.4), y / 5 - 10);
+		context.fillText((data.fail * 100) + "% " + text.fail, x + (x * 0.4), y / 5 - 10);
 		context.fill();
 	}
 
-	function drawTitle() {
+	/*
+		- Input: none.
+		- Output: draw a text title at center with data title: BIỂU ĐỒ TỔNG QUÁT KHUNG NĂNG LỰC,
+		 font: 20px Arial,
+		 color: dark blue in file "data.js".
+	*/
+	function drawTitle() 
+	{
 		context.beginPath();
-		context.font = text.font;
+		context.font      = text.font;
 		context.fillStyle = color.darkBlue;
 		context.textAlign = "center";
 		context.fillText(text.title, x, y);

@@ -8,11 +8,12 @@
 	}
 	var data = {
 		success: 0.8,   // data of text success
-		fail: 0.2   // data of text fail
+		fail: 0.2 // data of text fail
 	};
 
 	var color = {
 		blue: "#009ed5",
 		darkBlue: "#456aa4",
-		red: "#e4322b"
+		red: "#EF5350",
+		darkRed: "#e4322b"
 	};

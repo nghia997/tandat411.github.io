@@ -7,7 +7,7 @@ $(document).ready(function () {
 	var scaleX   = 1;
 	var scaleY   = 0.4; // scale with point Y to make circle become eclipe
 	var radius   = 200; // Radius of circle
-	var distance = 20; // distance between fail and success
+	var distance = 10; // distance between fail and success
 
 	// Start draw 3D Pie chart
 	draw();
@@ -41,7 +41,7 @@ $(document).ready(function () {
 			else: draw line and text both of them
 		*/
 		if (data.success == 1) {drawLineSuccess();}
-		else if (data.fail == 1){drawLineFail();}
+		else if (data.fail == 1) {drawLineFail();}
 		else {
 			drawLineSuccess();
 			drawLineFail();
@@ -59,7 +59,9 @@ $(document).ready(function () {
 	function drawSuccess(value, distance) 
 	{
 		var startAngle = (data.success == 0.5) ? x : x + distance;
-		var endAngle   = (distance > 0) ? y + distance + value : y - distance + value;
+		var endAngle   = (distance > 0) ? (data.success <= 0.05) ? y + value : y + distance + value : y - distance + value;
+		
+		// Draw Success circle
 		context.save(); // Save this state
 		context.scale(scaleX, scaleY);
 		context.beginPath();
@@ -78,8 +80,10 @@ $(document).ready(function () {
 	*/
 	function drawFail(value, distance) 
 	{
-		startAngle = x + distance;
-		endAngle   = y - distance + value;
+		var startAngle = x + distance;
+		var endAngle   = (data.fail <= 0.05) ? y + value : y - distance + value;
+
+		// Draw Fail circle
 		context.save(); // Save this state
 		context.scale(scaleX, scaleY);
 		context.beginPath();
@@ -103,14 +107,16 @@ $(document).ready(function () {
 		var positionX = (x + xEnd) / 2;
 		var positionY = ((y + yEnd) / 2) * scaleY;
 
+		// Draw line Success
 		context.beginPath();
 		context.moveTo(x / 5, y / 5);
 		context.lineTo(x / 2, y / 5);
-		context.lineTo(positionX + 70, positionY + 7);
+		context.lineTo(positionX + 70, positionY);
 		context.strokeStyle = color.blue;
 		context.lineWidth = 3;
 		context.stroke();
 
+		// Draw text Success
 		context.beginPath();
 		context.font = text.font;
 		context.fillStyle = text.color;
@@ -131,14 +137,16 @@ $(document).ready(function () {
 		var positionX = (x + xEnd) / 2;
 		var positionY = ((y + yEnd) / 2) * scaleY;
 
+		// Draw line Fail
 		context.beginPath();
 		context.moveTo(x + (x * 0.7), y / 5);
 		context.lineTo(x + (x * 0.4), y / 5);
-		context.lineTo(positionX + 50, positionY - 5);
+		context.lineTo(positionX + 50, positionY);
 		context.strokeStyle = color.red;
 		context.lineWidth   = 3;
 		context.stroke();
 
+		// Draw text Fail
 		context.beginPath();
 		context.font      = text.font;
 		context.fillStyle = text.color;

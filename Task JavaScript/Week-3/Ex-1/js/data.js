@@ -4,7 +4,7 @@
 		fail: 'CHƯA ĐẠT',  // Fail text
 		title: "BIỂU ĐỒ TỔNG QUÁT KHUNG NĂNG LỰC",
 		font: "20px Arial", // set font-style for text
-		color: "gray" // color of text
+		color: "#999" // color of text
 	}
 	var data = {
 		success: 0.8,   // data of text success

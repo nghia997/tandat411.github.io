@@ -17,7 +17,7 @@
 
 	// color of text and line
 	var color = {
-		gray: "#999",
-		black: "#000",
-		blue: "#36F"
+		gray: "gray",
+		black: "black",
+		blue: "blue"
 	};

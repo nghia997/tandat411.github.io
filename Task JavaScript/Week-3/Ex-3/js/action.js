@@ -8,18 +8,9 @@ $(document).ready(function () {
 		/* Draw column chart*/
 		function run() 
 		{
-			// Validate sum of columns
 			if (item.length > 5) {
 				alert('Sum value of columns must be less than 5');
 				return false;
-			}
-
-			// Check all values of Item can't be less than 0
-			for (var i = 0; i < item.length; i++) {
-				if (item[i].value < 0) {
-					alert("Value of the item can't be less than 0");
-					return false;
-				}
 			}
 
 			drawText(text.fontTitle, text.title, x / 4, 100, color.black);

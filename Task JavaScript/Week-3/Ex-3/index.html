@@ -7,7 +7,48 @@
 </head>
 <body>
   <div class="container">
-  	
+  	<table class="container__form">
+      <tr>
+        <td class="title">User name:</td>
+        <td>
+          <input type="text" name="txtName">
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="title">Password:</td>
+        <td>
+          <input type="password" name="txtPass">
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="title">Email:</td>
+        <td>
+          <input type="text" name="txtEmail">
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="title">Birthday:</td>
+        <td>
+          <input type="date" name="dateBD">
+          <table class="calendar" id="js-calendar">
+            <tr>
+            </tr>
+          </table>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button type="submit">SUBMIT</button>
+          <button type="submit">REFRESH</button>
+        </td>
+        <td></td>
+      </tr>
+    </table>
   </div>
   <!-- SCRIPT -->
   <script src="js/jquery-3.3.1.min.js"></script>

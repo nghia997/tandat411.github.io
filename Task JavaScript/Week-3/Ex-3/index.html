@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 	<meta charset="UTF-8">
-	<title>Bài tập JS biểu đồ cột - đề 2 (Tuần 3)</title>
+	<title>Bài tập JS 3: Lịch - đề 3 (Tuần 3)</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -31,94 +31,41 @@
       </tr>
       <tr>
         <td class="title">Birthday:</td>
-        <td>
-          <input type="date" name="dateBD">
+        <td class="col-dob">
+          <input class="input-date" id="js-birthday" type="text" name="dateBD" readonly>
+          <img class="icon-calendar" id="js-icon-calendar" src="imgs/calender.png" alt="calendar">
           <table class="calendar" id="js-calendar">
             <tr>
               <td>
                 <button id="js-prev-year">
-                  <img src="imgs/arrow2-left.png" alt="arrow-left-2">
+                  <img src="imgs/arrow2-left.png" alt="previous-year">
                 </button>
               </td>
               <td>
-                <button id="js-prev-day"><img src="imgs/arrow-left.png" alt="arrow-left-1"></button>
+                <button id="js-prev-month"><img src="imgs/arrow-left.png" alt="previous-month"></button>
               </td>
               <td colspan="2">
-                <select id="js-month"><option>November</option></select>
+                <select id="js-month"></select>
               </td>
               
               <td>
-                <select id="js-year"><option>2018</option></select>
+                <select id="js-year"></select>
               </td>
               <td>
-                <button id="js-next-day"><img src="imgs/arrow-right.png" alt="arrow-right-1"></button>
+                <button id="js-next-month"><img src="imgs/arrow-right.png" alt="next-month"></button>
               </td>
               <td>
-                <button id="js-next-year"><img src="imgs/arrow2-right.png" alt="arrow-right-2"></button>
+                <button id="js-next-year"><img src="imgs/arrow2-right.png" alt="next-year"></button>
               </td>
             </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+            <tr class="day-of-week">
+              <td>Sun</td>
+              <td>Mon</td>
+              <td>Tue</td>
+              <td>Wed</td>
+              <td>Thu</td>
+              <td>Fri</td>
+              <td>Sat</td>
             </tr>
           </table>
         </td>
@@ -127,8 +74,8 @@
       <tr>
         <td></td>
         <td>
-          <button type="submit">SUBMIT</button>
-          <button type="submit">REFRESH</button>
+          <button class="btn" type="submit">SUBMIT</button>
+          <button class="btn" type="submit">REFRESH</button>
         </td>
         <td></td>
       </tr>
@@ -136,7 +83,7 @@
   </div>
   <!-- SCRIPT -->
   <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/data.js"></script>
+  <script src="js/calendar.js"></script>
   <script src="js/action.js"></script>
 </body>
 </html>

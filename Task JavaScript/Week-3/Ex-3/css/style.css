@@ -50,7 +50,7 @@ table {
 
 /* CSS CONTAINER */
 .container {
-  width: 40%;
+  width: 55%;
   margin: 0 auto;
 }
 
@@ -76,6 +76,7 @@ table {
 }
 
 .title {
+  width: 100px;
   font-weight: bold;
   text-align: right;
 }
@@ -131,4 +132,10 @@ table {
   font-weight: bold;
   color: #FFD600;
   background: #2962FF;
+}
+
+.validate {
+  font-weight: bold;
+  color: #D50000;
+  padding-left: 20px;
 }

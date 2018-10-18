@@ -1,6 +1,10 @@
 <?php
   session_start();
   session_destroy();
+
+  if (isset($_COOKIE["success"])) {
+    echo "<script> alert('".$_COOKIE["success"]."')</script>";
+  }
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -80,7 +84,7 @@
           <td></td>
           <td>
             <button class="btn" id="js-btn-submit" name="btnSubmit">SUBMIT</button>
-            <button class="btn" type="submit" id="js-btn-refresh">REFRESH</button>
+            <button class="btn" id="js-btn-refresh" name="btnRefresh">REFRESH</button>
           </td>
           <td></td>
         </tr>

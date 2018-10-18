@@ -2,12 +2,20 @@
 	include_once("config/connection.php");
 
     session_start();
-	$db       = new Database();
-	$name     = $_POST["txtName"].trim();
-    $password = $_POST["txtPass"];
-    $email    = $_POST["txtEmail"].trim();
-    $birthDay = $_POST["txtBirth"];
+	$db        = new Database();
+	$name      = trim($_POST["txtName"]);
+    $password  = $_POST["txtPass"];
+    // Hash password to bcrypt
+    $hash_pass = password_hash($_POST["txtPass"], PASSWORD_BCRYPT);
+    $email     = trim($_POST["txtEmail"]);
+    $birthDay  = $_POST["txtBirth"];
 
+    /* If user click on button Submit:
+        - Check validate for all input.
+        - If fail: make sessions with error text for any input incorrect.
+        - Else: Insert all value to database.
+        - Return back to from submit.
+    */
 	if (isset($_POST["btnSubmit"])) {
         if (empty($name)) {
             $_SESSION["errorName"] = "User name must not be empty.";
@@ -36,6 +44,7 @@
 
         if (empty($birthDay)) {
             $_SESSION["errorBirth"] = "Day of birth must not be empty.";
+            header("location: index.php");
         } else {
             $toDay = date('d/m/Y');
             $arr = explode('/', $birthDay);
@@ -43,12 +52,13 @@
             $thisDay = date('d/m/Y', strtotime($newDate));
             if ($thisDay > $toDay) {
                 $_SESSION["errorBirth"] = "Day of birth can't be greater than the current date.";
+                header("location: index.php");
+            } else if ($db->insertUser($name, $hash_pass, $email, $birthDay)) {
+                setcookie("success", "Congratulation! Your submit are success.", time() + 3);
             }
         }
-
-
         header("location: index.php");
     }
 
-
-?>
+    if (isset($_POST["btnRefresh"])) {header("location: index.php");}
+    

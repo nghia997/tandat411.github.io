@@ -1,0 +1,6 @@
+﻿- Kết nối cơ sở dữ liệu xử lý trong file connection.php
+trong thư mục [config].
+- File config.ini: chứa các thông tin kết nối csdl.
+- Tên database: database_user.
+- File database nằm trong thư mục [database].
+- Các xử lý trên server nằm trong file validate.php

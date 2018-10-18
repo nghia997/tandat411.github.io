@@ -49,7 +49,7 @@ $(document).ready(function () {
 	// Event check validate again for all input user click on button Submit
 	btnSubmit.click(function () 
 	{
-		/*var name     = txtName.val().trim();
+		var name     = txtName.val().trim();
 		var password = txtPass.val();
 		var email    = txtEmail.val().trim();
 		var dob      = txtBirthDay.val();
@@ -62,8 +62,7 @@ $(document).ready(function () {
 		if (formInput.children().children().children('.validate').length != 0 
 			|| !checkBirthDay(txtBirthDay) || !checkEmail(txtEmail)) {
 			return false;
-		}*/
-		
+		}
 	});
 
 	/* Function check day of birth:

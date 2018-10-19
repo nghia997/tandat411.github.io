@@ -61,8 +61,11 @@ $(document).ready(function () {
 
 		if (formInput.children().children().children('.validate').length != 0 
 			|| !checkBirthDay(txtBirthDay) || !checkEmail(txtEmail)) {
+			alert('Submit fail');
 			return false;
-		}
+		} 
+		formInput.submit();
+		alert('Submit success');
 	});
 
 	/* Function check day of birth:
@@ -84,9 +87,8 @@ $(document).ready(function () {
 				thisRow.append("<td class='validate'>" + title + " can't be greater than the current date.</td>");
 			}
 			return false;
-		} else {
-			return true;
 		}
+		return true;
 	}
 
 	/* Function get correct format of date:
@@ -115,8 +117,9 @@ $(document).ready(function () {
 				thisRow.children().get(2).remove();
 				thisRow.append("<td class='validate'>" + title + " Wrong email format.</td>");
 			}
-			console.log('obj');
+			return false;
 		}
+		return true;
 	}
 
 	/* Function validate case value are empty and less than 8 characters for all input:

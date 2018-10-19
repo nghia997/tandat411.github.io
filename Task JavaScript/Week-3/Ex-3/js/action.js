@@ -59,8 +59,8 @@ $(document).ready(function () {
 		validate(txtEmail, email);
 		validate(txtBirthDay, dob);
 
-		if (formInput.children().children().children('.validate').length != 0 
-			|| !checkBirthDay(txtBirthDay) || !checkEmail(txtEmail)) {
+		if (!checkBirthDay(txtBirthDay) || !checkEmail(txtEmail) || 
+			formInput.children().children().children('.validate').length != 0 ) {
 			alert('Submit fail');
 			return false;
 		} 

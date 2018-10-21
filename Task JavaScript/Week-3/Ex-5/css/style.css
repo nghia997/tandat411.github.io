@@ -49,12 +49,16 @@ table {
 
 /* CSS CONTAINER */
 .container {
+  height: 650px;
   position: relative;
+  overflow: hidden;
 }
 
 .content {position: absolute;}
 
 .leaves-right {right: 0;}
+
+.js-leaves {top: -100px;}
 
 
 

@@ -2,8 +2,10 @@ $(document).ready(function () {
 	var columnChart  = (function () {
 		var canvas   = $('#js-canvas').get(0);
 		var context  = canvas.getContext('2d');
-		var x        = canvas.width; // get width of canvas
-		var y        = canvas.height; // get height of canvas
+		// get width of canvas
+		var x        = canvas.width;
+		// get height of canvas
+		var y        = canvas.height;
 
 		/* Draw column chart*/
 		function run() 

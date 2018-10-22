@@ -64,7 +64,7 @@ $(document).ready(function () {
 			alert('Submit fail');
 			return false;
 		} 
-		formInput.submit();
+		
 		alert('Submit success');
 	});
 

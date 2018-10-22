@@ -1,10 +1,15 @@
 $(document).ready(function () {
 	var view = $('#js-view');
 	var cloud = (function () {
-		var items = $('.js-item');
+		var item1 = $('.js-item1');
+		var item2 = $('.js-item2');
+		var item3 = $('.js-item3');
 		// Position of mouse
 		var position = 0;
-		var distance = 0.7;
+		// Speeds for 3 layers
+		var distance1 = 0.2;
+		var distance2 = 0.5;
+		var distance3 = 0.8;
 		// Limit distance to move left and right
 		var limit	 = 100;
 
@@ -13,11 +18,24 @@ $(document).ready(function () {
 			- Output: get position of mouse and set CSS for all cloud to move left or right.
 		*/
 		function startMove(event) {
-			if (event.pageX > position && parseInt(items.css('left')) < limit) {
-				items.css({left: '+=' + distance});
-			} else if (parseInt(items.css('right')) < limit) {
-				items.css({left: '-=' + distance});
+			if (event.pageX > position && parseInt(item1.css('left')) < limit) {
+				item1.css({left: '+=' + distance1});
+			} else if (parseInt(item1.css('left')) > -limit) {
+				item1.css({left: '-=' + distance1});
 			}
+
+			if (event.pageX > position && parseInt(item2.css('left')) < limit) {
+				item2.css({left: '+=' + distance2});
+			} else if (parseInt(item2.css('left')) > -limit) {
+				item2.css({left: '-=' + distance2});
+			}
+
+			if (event.pageX > position && parseInt(item3.css('left')) < 200) {
+				item3.css({left: '+=' + distance3});
+			} else if (parseInt(item3.css('left')) > -limit) {
+				item3.css({left: '-=' + distance3});
+			}
+
 			position = event.pageX;
 		};
 

@@ -1,16 +1,13 @@
 <?php
-/*Sự khác nhau giữa == và === là:
-== là so sánh giá trị giữa 2 biến
-=== là so sánh giá trị và kiểu dữ liệu của 2 biến*/
-$a = 2;
-$b = '2';
+$numberTwo = 2;
+$stringTwo = '2';
 $temp = true;
 
 echo '<b>So sánh sự khác nhau giữa số 2 và chuỗi "2":</b><br>';
 echo '- Sử dụng operator "==":<br>';
-echo var_dump($a == $b) . '<br>';
+echo var_dump($numberTwo == $stringTwo) . '<br>';
 echo '- Sử dụng operator "===":<br>';
-echo var_dump($a === $b) .'<br><br>';
+echo var_dump($numberTwo === $stringTwo) .'<br><br>';
 
 echo '<b>Trường hợp trả về true của hàm empty() và hàm isset():</b><br>';
 // empty() trả về true khi giá trị = null, 0, 0.0, false, '' hoặc 1 biến chưa được khai báo

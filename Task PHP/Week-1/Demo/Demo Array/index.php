@@ -81,6 +81,7 @@ function demoSort($arrayNumber)
     echo '</pre>';
 }
 
+// ARRAY_UNIQUE()
 function demoArrayUnique($arrayNumber)
 {
     echo '- Sử dụng hàm <b>array_unique()</b> để xóa những giá trị trùng lặp trong mảng: <br>';

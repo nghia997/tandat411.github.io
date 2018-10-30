@@ -99,7 +99,7 @@ function demoArrayUnique($arrayNumber)
 function demoExplode(&$name)
 {
     echo '- Sử dụng hàm <b>explode()</b> để cắt một chuỗi thành mảng với chuỗi cắt là " ": <br>';
-    echo '<b>Chuỗi ban đầu: </b>'.$name.'<br>';
+    echo '<b>Chuỗi ban đầu: </b>' . $name . '<br>';
     $name = explode(' ', $name);
     echo '<b>Kết quả:</b><br><pre>';
     print_r($name);
@@ -162,12 +162,12 @@ function demoInArray($arrayNumber)
     echo '</pre>';
     $valueTrue = 99;
     $valueFalse = 88;
-    echo '<br>  . Tìm giá trị = <b>'.$valueTrue.'</b> trong mảng số nguyên: <br>';
+    echo '<br>  . Tìm giá trị = <b>' . $valueTrue . '</b> trong mảng số nguyên: <br>';
     $result = in_array($valueTrue, $arrayNumber);
     echo '<b>Kết quả:</b><br><pre>';
     var_dump($result);
     echo '</pre>';
-    echo '  . Tìm giá trị = <b>'.$valueFalse.'</b> trong mảng số nguyên: <br>';
+    echo '  . Tìm giá trị = <b>' . $valueFalse . '</b> trong mảng số nguyên: <br>';
     $result = in_array($valueFalse, $arrayNumber);
     echo '<pre>';
     var_dump($result);
@@ -318,6 +318,7 @@ function demoArrayMerge()
 {
     $firstArray = ['name' => 'Đạt', 'ages' => 20, 'sex' => 'male', 'country' => 'Bến Tre'];
     $secondArray = ['name' => 'Tấn Đạt', 'ages' => 21, 'sex' => 'male', 'phone' => '0347439597'];
+
     echo '<br>- Sử dụng hàm <b>array_merge()</b> để gộp toàn bộ phần tử của các mảng nếu trùng Key sẽ lấy phần tử của mảng cuối cùng: <br>';
     echo '<b>Mảng thứ 1:</b>';
     echo '<pre>';
@@ -385,10 +386,10 @@ function demoArrayFilter($arrayNumber)
     echo '<pre>';
     print_r($arrayNumber);
     echo '</pre>';
-    $evenArray = array_filter($arrayNumber, function ($value){
+    $evenArray = array_filter($arrayNumber, function ($value) {
         return ($value % 2 == 0) ? true : false;
     });
-    $oddArray = array_filter($arrayNumber, function ($value){
+    $oddArray = array_filter($arrayNumber, function ($value) {
         return ($value % 2 != 0) ? true : false;
     });
     echo '<b>Kết quả:</b><br>';
@@ -416,7 +417,7 @@ function demoArrayMap()
     echo '<pre>';
     print_r($arrayLastName);
     echo '</pre>';
-    $arrayMap = array_map(function ($arrayFirstName, $arrayLastName){
+    $arrayMap = array_map(function ($arrayFirstName, $arrayLastName) {
         return $arrayFirstName . ' ' . $arrayLastName;
     }, $arrayFirstName, $arrayLastName);
 
@@ -438,7 +439,7 @@ function demoArrayWalk()
     echo '</pre>';
 
     echo '<b>Kết quả:</b><br>';
-    array_walk($arrayName, function ($value, $key, $text){
+    array_walk($arrayName, function ($value, $key, $text) {
         echo $text . $key . ': ' . $value . '<br>';
     }, $text);
 }

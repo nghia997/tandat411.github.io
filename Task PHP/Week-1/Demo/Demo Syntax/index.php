@@ -14,7 +14,6 @@
     dòng <br>
 EOL;
 ?>
-
 <!--Use short tag to echo all variables-->
 <?=
     'Biến textMultiLine với giá trị là một chuỗi được khai báo với multiple lines: <b>' . $textMultiLine . '</b>' .

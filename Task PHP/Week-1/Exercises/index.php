@@ -37,9 +37,11 @@ echo '</pre> Result: ';
 descendingSort($array1, $mainArray);
 
 /* Function check input
- *  @params 3 array.
+ *  @params array $array1 to check.
+ *  @params array $array2 to check.
+ *  @params array $array3 to check.
  *  @throw LogicException with message "Invalid parameter [index]" if one of them is not an array
- *  @return a string.
+ *  @return none.
  */
 function checkInput($array1, $array2, $array3)
 {
@@ -62,8 +64,8 @@ function checkInput($array1, $array2, $array3)
 }
 
 /* Function number 1 in first array
- *  @params first array.
- *  @return a string result.
+ *  @params array $firstArray to find number one in this array.
+ *  @return none.
  */
 function findNumberOne($firstArray)
 {
@@ -72,8 +74,9 @@ function findNumberOne($firstArray)
 }
 
 /* Function merge 2 array in position 2 and 3, delete duplicate values
- *  @params second array and third array.
- *  @return a string result.
+ *  @params array $secondArray to merge with $thirdArray.
+ *  @param array $thirdArray to merge with $secondArray.
+ *  @return none.
  */
 function mergeArrays($secondArray, $thirdArray)
 {
@@ -84,8 +87,8 @@ function mergeArrays($secondArray, $thirdArray)
 }
 
 /* Function filter out all values whose sum of digits is divisible by 2
- *  @params main array.
- *  @return a string result.
+ *  @params array $mainArray to filter even array.
+ *  @return none.
  */
 function evenArray($mainArray)
 {
@@ -102,8 +105,9 @@ function evenArray($mainArray)
 }
 
 /* Function ascending sort all of the value of the first array that exists in the main array
- *  @params first array and main array.
- *  @return a string result.
+ *  @param array $array1 to find duplicate values in $mainArray.
+ *  @param array $mainArray for $array1 to find duplicate values.
+ *  @return none.
  */
 function ascendingSort($array1, $mainArray)
 {
@@ -114,8 +118,9 @@ function ascendingSort($array1, $mainArray)
 }
 
 /* Function descending sort all the descending value of the first array whose key is not in the main array
- *  @params first array and main array.
- *  @return a string result.
+ *  @param array $array1 to find duplicate key in $mainArray.
+ *  @param array $mainArray for $array1 to find duplicate keys.
+ *  @return none.
  */
 function descendingSort($array1, $mainArray)
 {

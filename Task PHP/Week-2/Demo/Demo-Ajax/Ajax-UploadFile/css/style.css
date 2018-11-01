@@ -32,11 +32,7 @@ ol, ul {
 blockquote, q {
     quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -57,8 +53,9 @@ table {
 }
 
 .progress_bar {
-    display: inline-block;
-    width: 70px;
-    height: 12px;
-    background-color: #387038;
+    float: left;
+    margin-top: 10px;
+    height: 20px;
+    background-color: #499249;
+    clear: both;
 }

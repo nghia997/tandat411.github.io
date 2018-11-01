@@ -6,42 +6,38 @@ $(document).ready(function() {
   var progressBar = $('#js-progress_bar');
   var progressPercent = $('#js-progress_percent');
   var result = $('#js-result');
-  var percentValue = 0;
+  var percentValue = '0%';
 
   btSubmit.click(function() {
     if (file.val() == '') {
-      progress.css('display', 'block');
-      progressBar.css('width', '100px');
-      progressPercent.html('100%');
       alert('No file selected for upload');
+      return false;
     } else {
-      //form.attr('onsubmit','return processForm(this)');
+      progress.css('display', 'block');
       form.ajaxForm({
         //Before uploading value in progress is 0%
         beforeSubmit: function() {
-          result.empty();
-          percentValue = "0%";
-          progressBar.width = percentValue;
+          progressBar.width(percentValue);
           progressPercent.html(percentValue);
         },
 
-        //while uploading value in progress increase
+        //while uploading value in progress will increase
         uploadProgress: function(event, position, total, percentComplete) {
-          var percentValue = percentComplete + '%';
-          progressbar.width(percentValue);
-          percent.html(percentValue);
+          var value = percentComplete + '%';
+          progressBar.width(value);
+          progressPercent.html(value);
         },
 
         //when uploading file finish value in progress is 100%
         success: function() {
-          var percentValue = '100%';
-          progressbar.width(percentValue);
-          percent.html(percentValue);
+          percentValue = '100%';
+          progressBar.width(percentValue);
+          progressPercent.html(percentValue);
         },
 
-        //Add response text to div #result when uploading complete
-        complete: function(xhr) {
-          result.html(xhr.responseText);
+        //Add response text to tag <p> #result when uploading complete
+        complete: function(data) {
+          result.html(data.responseText);
         }
       });
     }

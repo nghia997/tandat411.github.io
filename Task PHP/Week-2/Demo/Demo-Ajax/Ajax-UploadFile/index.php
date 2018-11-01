@@ -10,18 +10,18 @@
 </head>
 <body>
 <div class="container">
-  <form id="js-form" action="ajax.php" method="POST" enctype="multipart/form-data" onsubmit="return false">
+  <form id="js-form" action="ajax.php" method="post" enctype="multipart/form-data">
     <input type="file" id="js-file" name="fileUpload">
     <input type="submit" id="js-btSubmit" name="btSubmit" value="Upload">
-    <p id="js-result"></p>
-    <div class="progress" id="js-progress">
-      <label>Progress:</label>
-      <span class="progress_bar" id="js-progress_bar"></span>
-      <span class="progress_percent" id="js-progress_percent">0%</span>
-    </div>
   </form>
+  <div class="progress" id="js-progress">
+    <p>Progress:
+      <span class="progress_percent" id="js-progress_percent">0%</span>
+      <span id="js-result"></span>
+    </p>
+    <div class="progress_bar" id="js-progress_bar"></div>
+  </div>
 </div>
-
 
   <!--SCRIPT-->
   <script src="js/jquery-3.3.1.min.js"></script>

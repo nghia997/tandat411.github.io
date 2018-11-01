@@ -10,9 +10,11 @@ if (isset($submit)) {uploadFile($file);}
  * */
 function uploadFile($file)
 {
-    if (!empty($file['name'])) {
+    // Check file upload with HTTP Post or not
+    if (is_uploaded_file($file['tmp_name'])) {
         move_uploaded_file($file['tmp_name'], 'uploads/'. $file['name']);
-        echo '<script> alert("Upload successful."); </script>';
-    } else echo '<script> alert("No file selected for upload."); </script>';
+        echo 'Uploaded successfully!';
+    }
+
 }
 

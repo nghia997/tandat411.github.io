@@ -12,7 +12,9 @@ function uploadFile($file)
 {
     // Check file upload with HTTP Post or not
     if (is_uploaded_file($file['tmp_name'])) {
-        move_uploaded_file($file['tmp_name'], 'uploads/'. $file['name']);
+        $path = $file['tmp_name'];
+        $destination = 'uploads/'. $file['name'];
+        move_uploaded_file($path, $destination);
         echo 'Uploaded successfully!';
     }
 

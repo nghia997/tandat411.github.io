@@ -1,7 +1,7 @@
 <?php
-include_once 'session.php';
-$sess = new session();
-$sess->start_session('name', false);
+include_once 'Session.php';
+$session = new Session();
+$session->start_session('dat', false);
 
-$_SESSION['b'] = 'Mai Lâm Tấn Đạt';
-echo 'Your data Session: <b>' . $_SESSION['b'] . '</b>';
+$_SESSION['name'] = 'Mai Lâm Tấn Đạt';
+echo 'Your data Session: <b>' . $_SESSION['name'] . '</b>';

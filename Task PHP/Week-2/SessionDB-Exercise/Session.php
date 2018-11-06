@@ -1,6 +1,6 @@
 <?php
 
-class Session
+class session
 {
     private $db;
 
@@ -18,7 +18,6 @@ class Session
         );
 
         register_shutdown_function('session_write_close');
-        echo 'construct<br>';
     }
 
     /*  Method to start sessions
@@ -66,7 +65,6 @@ class Session
          It also generates a new encryption key in the database.
         */
         session_regenerate_id(true);
-        echo 'start<br>';
     }
 
     /*  Method to connect to database
@@ -80,7 +78,6 @@ class Session
         $database = 'secure_sessions';
         $connect = new mysqli($host, $user, $password, $database);
         $this->db = $connect;
-        echo 'open<br>';
         return true;
     }
 
@@ -90,7 +87,6 @@ class Session
     public function close()
     {
         $this->db->close();
-        echo 'close<br>';
         return true;
     }
 
@@ -100,7 +96,7 @@ class Session
      * */
     public function read($id)
     {
-        /*if (!isset($this->read_stmt)) {
+        if (!isset($this->read_stmt)) {
             $this->read_stmt = $this->db->prepare("SELECT data FROM sessions WHERE id = ?");
         }
         $this->read_stmt->bind_param('s', $id);
@@ -108,16 +104,9 @@ class Session
         $this->read_stmt->store_result();
         // Bind result to new variable $data
         $this->read_stmt->bind_result($data);
-        $this->read_stmt->fetch();*/
-        $result = $this->db->query("SELECT data FROM sessions WHERE id = ?");
-        if ($result == false) {
-            
-            return '';
-        }
-        echo var_dump($result);
+        $this->read_stmt->fetch();
         $key = $this->getkey($id);
         $data = $this->decrypt($data, $key);
-        echo 'read<br>';
         return $data;
     }
 
@@ -140,7 +129,6 @@ class Session
 
         $this->w_stmt->bind_param('siss', $id, $time, $data, $key);
         $this->w_stmt->execute();
-        echo 'write<br>';
         return true;
     }
 
@@ -148,14 +136,13 @@ class Session
      *  @param string $id to get session in database
      *  return boolean
      * */
-    public function destroy($id)
+    function destroy($id)
     {
         if (!isset($this->delete_stmt)) {
             $this->delete_stmt = $this->db->prepare("DELETE FROM sessions WHERE id = ?");
         }
         $this->delete_stmt->bind_param('s', $id);
         $this->delete_stmt->execute();
-        echo 'destroy<br>';
         return true;
     }
 
@@ -163,7 +150,7 @@ class Session
      *  @param string $max to get life time of session in database
      *  return boolean
      * */
-    public function gc($max)
+    function gc($max)
     {
         if (!isset($this->gc_stmt)) {
             $this->gc_stmt = $this->db->prepare("DELETE FROM sessions WHERE set_time < ?");
@@ -171,7 +158,6 @@ class Session
         $old = time() - $max;
         $this->gc_stmt->bind_param('s', $old);
         $this->gc_stmt->execute();
-        echo 'gc<br>';
         return true;
     }
 
@@ -227,23 +213,4 @@ class Session
         $decrypted = base64_encode(openssl_encrypt($data, 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv));
         return $decrypted;
     }
-
-    /*public function getValue($id)
-    {
-        if (!isset($this->key_stmt)) {
-            $this->key_stmt = $this->db->prepare("SELECT session_key FROM sessions WHERE id = ?");
-        }
-        $this->key_stmt->bind_param('s', $id);
-        $this->key_stmt->execute();
-        $this->key_stmt->store_result();
-        if ($this->key_stmt->num_rows == 1) {
-            // bind result to new variable $key
-            $this->key_stmt->bind_result($key);
-            $this->key_stmt->fetch();
-            return $key;
-        } else {
-            $random_key = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
-            return $random_key;
-        }
-    }*/
 }

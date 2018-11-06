@@ -17,7 +17,7 @@
   </h1>
     <form action="validate1.php" method="post">
         <p>ID session:</p>
-        <input type="text" name="txtSessionKey">
+        <input type="text" name="txtSessionID">
         <h1>
             <?php
                 if (isset($_COOKIE['errorKey'])) {

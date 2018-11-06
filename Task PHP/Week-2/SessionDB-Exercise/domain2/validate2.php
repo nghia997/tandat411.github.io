@@ -1,9 +1,6 @@
 <?php
 include_once '../Session.php';
 
-$session = new Session();
-$session->start_session('_s', false);
-
 if (isset($_POST['btRead'])) {
     $key = trim($_POST['txtSessionKey']);
     if (empty($key)) {
@@ -11,8 +8,10 @@ if (isset($_POST['btRead'])) {
         setcookie('errorKey', 'ID must not be empty..', time() + 1);
         header('location: index.php');
     } else {
-        //header('location: index.php');
-        echo 'Result: <b>' . $_SESSION[$key] . '</b>';
-        //echo var_dump($session);
+        $session = new Session();
+        session_id($key);
+        $session->start_session('dat', false);
+        $result = $session->read($key);
+        echo (empty($result)) ? '<b>This session is not exist..</b>' : 'Result: <b>' . $session->read($key) . '</b>';
     }
 }

@@ -1,6 +1,5 @@
 <?php
-
-class session
+class Session
 {
     private $db;
 
@@ -61,14 +60,10 @@ class session
         // Start the session
         session_start();
 
-        /* This line regenerates the session and delete the old session.
-         It also generates a new encryption key in the database.
-        */
-        session_regenerate_id(true);
     }
 
     /*  Method to connect to database
-     *  return boolean
+     *  @return boolean
      *  */
     public function open()
     {
@@ -82,7 +77,7 @@ class session
     }
 
     /*  Method to close connected with database
-     *  return boolean
+     *  @return boolean
      *  */
     public function close()
     {
@@ -92,7 +87,7 @@ class session
 
     /*  Method to get data of id input session
      *  @param string $id to get id of session in database
-     *  return string $data of session
+     *  @return string $data of session
      * */
     public function read($id)
     {
@@ -105,23 +100,29 @@ class session
         // Bind result to new variable $data
         $this->read_stmt->bind_result($data);
         $this->read_stmt->fetch();
-        $key = $this->getkey($id);
-        $data = $this->decrypt($data, $key);
-        return $data;
+        //$key = $this->getkey($id);
+        if (empty($data)) {
+            return '';
+        }
+        $data = $this->decrypt($data, $id);
+        $splitData = explode('"', $data);
+        return $splitData[1];
     }
 
     /*  Method to insert a new session or update old session
      *  @param string $id to get id of session in database or set a new id for new session
      *  @param string $data to get data of session in database or set a new data for new session
-     *  return boolean
+     *  @return boolean
      * */
     public function write($id, $data)
     {
+        if (empty($data)) {
+            return true;
+        }
         // Get unique key
         $key = $this->getkey($id);
         // Encrypt the data
-        $data = $this->encrypt($data, $key);
-
+        $data = $this->encrypt($data, $id);
         $time = time();
         if (!isset($this->w_stmt)) {
             $this->w_stmt = $this->db->prepare("REPLACE INTO sessions (id, set_time, data, session_key) VALUES (?, ?, ?, ?)");
@@ -134,7 +135,7 @@ class session
 
     /*  Method to remove a session with input id
      *  @param string $id to get session in database
-     *  return boolean
+     *  @return boolean
      * */
     function destroy($id)
     {
@@ -148,7 +149,7 @@ class session
 
     /*  Method garbage collector to remove old sessions in database when the time exist are over
      *  @param string $max to get life time of session in database
-     *  return boolean
+     *  @return boolean
      * */
     function gc($max)
     {
@@ -163,7 +164,7 @@ class session
 
     /*  Method to get sessionID or create a new random sessionID
      *  @param string $id to get id of session in database
-     *  return string $key or $random_key
+     *  @return string $key or $random_key
      * */
     private function getkey($id)
     {
@@ -187,30 +188,26 @@ class session
     /*  Method to encrypt a data of session with sessionID
      *  @param string $data is a data will be encrypt
      *  @param string $key is sessionID of this session
-     *  return string $encrypted is a encrypted data
+     *  @return string $encrypted is a encrypted data
      * */
     private function encrypt($data, $key)
     {
         $salt = 'cH!swe!retReGu7W6bEDRup7usuDUh9THeD2CHeGE*ewr4n39=E@rAsp7c-Ph@pH';
-        $key = substr(hash('sha256', $salt . $key . $salt), 0, 32);
-        $iv_size = openssl_cipher_iv_length('AES-256-CBC');
-        $iv = openssl_random_pseudo_bytes($iv_size);
-        $encrypted = base64_encode(openssl_encrypt($data, 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv));
+        $iv = substr(hash('sha256', $salt . $key . $salt), 0, 16);
+        $encrypted = openssl_encrypt(base64_encode($data), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv);
         return $encrypted;
     }
 
     /*  Method to decrypt a data of session with sessionID
      *  @param string $data is a encrypted data will be decrypt
      *  @param string $key is sessionID of this session
-     *  return string $decrypted is a decrypted data
+     *  @return string $decrypted is a decrypted data
      * */
-    private function decrypt($data, $key)
+    public function decrypt($data, $key)
     {
         $salt = 'cH!swe!retReGu7W6bEDRup7usuDUh9THeD2CHeGE*ewr4n39=E@rAsp7c-Ph@pH';
-        $key = substr(hash('sha256', $salt . $key . $salt), 0, 32);
-        $iv_size = openssl_cipher_iv_length('AES-256-CBC');
-        $iv = openssl_random_pseudo_bytes($iv_size);
-        $decrypted = base64_encode(openssl_encrypt($data, 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv));
+        $iv = substr(hash('sha256', $salt . $key . $salt), 0, 16);
+        $decrypted = base64_decode(openssl_decrypt($data, 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv));
         return $decrypted;
     }
 }

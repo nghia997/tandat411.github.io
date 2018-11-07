@@ -1,0 +1,8 @@
+[07-11-2018 17:41:19] [localhost/tandat411.github.io/Task%20PHP/Week-2/Exercise/WriteLog/] : [EMERGENCY] - This is a new Emergency message
+[07-11-2018 17:41:19] [localhost/tandat411.github.io/Task%20PHP/Week-2/Exercise/WriteLog/] : [ALERT] - This is a new Alert message
+[07-11-2018 17:41:19] [localhost/tandat411.github.io/Task%20PHP/Week-2/Exercise/WriteLog/] : [CRITICAL] - This is a new Critical message
+[07-11-2018 17:41:19] [localhost/tandat411.github.io/Task%20PHP/Week-2/Exercise/WriteLog/] : [NOTICE] - This is a new Notice message
+[07-11-2018 17:41:19] [localhost/tandat411.github.io/Task%20PHP/Week-2/Exercise/WriteLog/] : [INFO] - This is a new Info message
+[07-11-2018 17:41:19] [localhost/tandat411.github.io/Task%20PHP/Week-2/Exercise/WriteLog/] : [ERROR] - This is a new Error message
+[07-11-2018 17:41:19] [localhost/tandat411.github.io/Task%20PHP/Week-2/Exercise/WriteLog/] : [WARNING] - This is a new Warning message
+[07-11-2018 17:41:19] [localhost/tandat411.github.io/Task%20PHP/Week-2/Exercise/WriteLog/] : [DEBUG] - This is a new DEBUG message

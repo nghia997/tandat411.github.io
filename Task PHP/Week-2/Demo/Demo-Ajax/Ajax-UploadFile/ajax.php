@@ -6,7 +6,7 @@ if (isset($submit)) {uploadFile($file);}
 
 /* Function to upload a input file to path uploads/
  * @param array $file to move this file to path uploads/
- * @return none.
+ * @return void.
  * */
 function uploadFile($file)
 {

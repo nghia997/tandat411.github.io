@@ -16,7 +16,7 @@ reverseString($trim);
 /* Function check input
  *  @params array $param1 to check.
  *  @throw LogicException with message "Invalid parameter" if one of them is not a string
- *  @return none.
+ *  @return void.
  */
 function checkInput($param1)
 {
@@ -29,7 +29,7 @@ function checkInput($param1)
 
 /* Function delete character 'm' in string 'trim'
  *  @params string $trim is a main string to delete.
- *  @return none.
+ *  @return void.
  */
 function deleteM($trim)
 {
@@ -38,7 +38,7 @@ function deleteM($trim)
 
 /* Function delete character 'm' in string 'trim'
  *  @params string $trim is a main string to delete.
- *  @return none.
+ *  @return void.
  */
 function reverseString($trim)
 {

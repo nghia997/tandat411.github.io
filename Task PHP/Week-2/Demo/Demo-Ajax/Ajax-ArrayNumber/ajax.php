@@ -5,7 +5,7 @@ ajaxCalculate($mainArray);
 
 /* Function to summation and multiplication all value in an array then encode result with json:
  * @param array $mainArray to get value.
- * return none.
+ * @return void.
  * */
 function ajaxCalculate($mainArray)
 {

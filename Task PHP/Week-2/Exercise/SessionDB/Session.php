@@ -3,7 +3,9 @@ class Session
 {
     private $db;
 
-    // Initialization method of class
+    /*  Initialization method of class
+    *   @return void
+    */
     public function __construct()
     {
         // function to override all functions of default session in php
@@ -22,6 +24,7 @@ class Session
     /*  Method to start sessions
      *  @param string $sessionName to set name for this Session
      *  @param boolean $secure to make sure cookie will sent sent over secure connections or not.
+     *  @return void
      *  */
     public function start_session($sessionName, $secure)
     {

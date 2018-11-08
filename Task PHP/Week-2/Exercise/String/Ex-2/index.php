@@ -16,7 +16,7 @@ findString($parentString, $childString);
  *  @param string @param1 to check
  *  @param string @param2 to check
  *  @throw LogicException with a messages 'Invalid parameter [index of param] if one of them is not a string'
- *  @return none
+ *  @return void
  *  */
 function checkInput($param1, $param2)
 {
@@ -39,7 +39,7 @@ function checkInput($param1, $param2)
 /* Function find a string in another string
  *  @param string $parentString is a parent string
  *  @param string @$childString to find in $parentString
- *  @return none
+ *  @return void
  *  */
 function findString($parentString, $childString)
 {

@@ -13,7 +13,7 @@ checkMultiByte($name);
 /* Function check input
  *  @params array $param1 to check.
  *  @throw LogicException with message "Invalid parameter" if one of them is not a string
- *  @return none.
+ *  @return void.
  */
 function checkInput($param1)
 {
@@ -26,7 +26,7 @@ function checkInput($param1)
 
 /* Function check input
  *  @params string $name to check this is a multi-bytes string or single-byte string.
- *  @return none.
+ *  @return void.
  */
 function checkMultiByte($name)
 {

@@ -13,6 +13,7 @@
         <input type="text" name="txtSessionKey">
         <h1>
             <?php
+            // Check cookie('errorKey') are exist or not
                 if (isset($_COOKIE['errorKey'])) {
                     echo $_COOKIE['errorKey'];
                 }

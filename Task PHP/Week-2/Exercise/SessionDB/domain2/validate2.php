@@ -1,8 +1,9 @@
 <?php
 include_once '../Session.php';
-
+// Check button 'Read Session' was clicked
 if (isset($_POST['btRead'])) {
     $key = trim($_POST['txtSessionKey']);
+    // Check $key are empty or not
     if (empty($key)) {
         $check = true;
         setcookie('errorKey', 'ID must not be empty..', time() + 1);

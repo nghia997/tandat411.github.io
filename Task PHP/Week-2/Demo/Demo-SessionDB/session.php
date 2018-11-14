@@ -3,7 +3,9 @@ class Session
 {
     private $db;
 
-    // Initialization method of class
+    /**
+     * Initialization method of class
+     */
     public function __construct()
     {
         // function to override all functions of default session in php
@@ -19,11 +21,12 @@ class Session
         register_shutdown_function('session_write_close');
     }
 
-    /*  Method to start sessions
-     *  @param string $sessionName to set name for this Session
-     *  @param boolean $secure to make sure cookie will sent sent over secure connections or not.
-     *  @return void
-     *  */
+    /**
+     * Method to start sessions
+     * @param string $sessionName to set name for this Session
+     * @param boolean $secure to make sure cookie will sent sent over secure connections or not.
+     * @return void
+     */
     public function start_session($sessionName, $secure)
     {
         $httponly = true;
@@ -63,9 +66,10 @@ class Session
 
     }
 
-    /*  Method to connect to database
-     *  @return boolean
-     *  */
+    /**
+     * Method to connect to database
+     * @return boolean
+     */
     public function open()
     {
         $host = 'localhost';
@@ -77,21 +81,24 @@ class Session
         return true;
     }
 
-    /*  Method to close connected with database
-     *  @return boolean
-     *  */
+    /**
+     * Method to close connected with database
+     * @return boolean
+     */
     public function close()
     {
         $this->db->close();
         return true;
     }
 
-    /*  Method to get data of id input session
-     *  @param string $id to get id of session in database
-     *  @return string $data of session
-     * */
+    /**
+     * Method to get data of id input session
+     * @param string $id to get id of session in database
+     * @return string $data of session
+     */
     public function read($id)
     {
+        // Check property $read_stmt are exist or not
         if (!isset($this->read_stmt)) {
             $this->read_stmt = $this->db->prepare("SELECT data FROM sessions WHERE id = ?");
         }
@@ -101,7 +108,7 @@ class Session
         // Bind result to new variable $data
         $this->read_stmt->bind_result($data);
         $this->read_stmt->fetch();
-        //$key = $this->getkey($id);
+        //Check value of $data are empty or not
         if (empty($data)) {
             return '';
         }
@@ -110,11 +117,12 @@ class Session
         return $splitData[1];
     }
 
-    /*  Method to insert a new session or update old session
-     *  @param string $id to get id of session in database or set a new id for new session
-     *  @param string $data to get data of session in database or set a new data for new session
-     *  @return boolean
-     * */
+    /**
+     * Method to insert a new session or update old session
+     * @param string $id to get id of session in database or set a new id for new session
+     * @param string $data to get data of session in database or set a new data for new session
+     * @return boolean
+     */
     public function write($id, $data)
     {
         if (empty($data)) {
@@ -125,6 +133,7 @@ class Session
         // Encrypt the data
         $data = $this->encrypt($data, $id);
         $time = time();
+        // Check property $w_stmt are exist or not
         if (!isset($this->w_stmt)) {
             $this->w_stmt = $this->db->prepare("REPLACE INTO sessions (id, set_time, data, session_key) VALUES (?, ?, ?, ?)");
         }
@@ -134,12 +143,14 @@ class Session
         return true;
     }
 
-    /*  Method to remove a session with input id
-     *  @param string $id to get session in database
-     *  @return boolean
-     * */
+    /**
+     * Method to remove a session with input id
+     * @param string $id to get session in database
+     * @return boolean
+     */
     function destroy($id)
     {
+        // Check property $delete_stmt are exist or not
         if (!isset($this->delete_stmt)) {
             $this->delete_stmt = $this->db->prepare("DELETE FROM sessions WHERE id = ?");
         }
@@ -148,12 +159,14 @@ class Session
         return true;
     }
 
-    /*  Method garbage collector to remove old sessions in database when the time exist are over
-     *  @param string $max to get life time of session in database
-     *  @return boolean
-     * */
+    /**
+     * Method garbage collector to remove old sessions in database when the time exist are over
+     * @param string $max to get life time of session in database
+     * @return boolean
+     */
     function gc($max)
     {
+        // Check property $read_stmt are exist or not
         if (!isset($this->gc_stmt)) {
             $this->gc_stmt = $this->db->prepare("DELETE FROM sessions WHERE set_time < ?");
         }
@@ -163,18 +176,21 @@ class Session
         return true;
     }
 
-    /*  Method to get sessionID or create a new random sessionID
-     *  @param string $id to get id of session in database
-     *  @return string $key or $random_key
-     * */
+    /**
+     * Method to get sessionID or create a new random sessionID
+     * @param string $id to get id of session in database
+     * @return string $key or $random_key
+     */
     private function getkey($id)
     {
+        // Check property $key_stmt are exist or not
         if (!isset($this->key_stmt)) {
             $this->key_stmt = $this->db->prepare("SELECT session_key FROM sessions WHERE id = ?");
         }
         $this->key_stmt->bind_param('s', $id);
         $this->key_stmt->execute();
         $this->key_stmt->store_result();
+        // Check key of session are available or not
         if ($this->key_stmt->num_rows == 1) {
             // bind result to new variable $key
             $this->key_stmt->bind_result($key);
@@ -186,11 +202,12 @@ class Session
         }
     }
 
-    /*  Method to encrypt a data of session with sessionID
-     *  @param string $data is a data will be encrypt
-     *  @param string $key is sessionID of this session
-     *  @return string $encrypted is a encrypted data
-     * */
+    /**
+     * Method to encrypt a data of session with sessionID
+     * @param string $data is a data will be encrypt
+     * @param string $key is sessionID of this session
+     * @return string $encrypted is a encrypted data
+     */
     private function encrypt($data, $key)
     {
         $salt = 'cH!swe!retReGu7W6bEDRup7usuDUh9THeD2CHeGE*ewr4n39=E@rAsp7c-Ph@pH';
@@ -199,11 +216,12 @@ class Session
         return $encrypted;
     }
 
-    /*  Method to decrypt a data of session with sessionID
-     *  @param string $data is a encrypted data will be decrypt
-     *  @param string $key is sessionID of this session
-     *  @return string $decrypted is a decrypted data
-     * */
+    /**
+     * Method to decrypt a data of session with sessionID
+     * @param string $data is a encrypted data will be decrypt
+     * @param string $key is sessionID of this session
+     * @return string $decrypted is a decrypted data
+     */
     public function decrypt($data, $key)
     {
         $salt = 'cH!swe!retReGu7W6bEDRup7usuDUh9THeD2CHeGE*ewr4n39=E@rAsp7c-Ph@pH';

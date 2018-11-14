@@ -10,10 +10,11 @@ btDelete.onclick = function() {
   result.innerHTML = getCookie('name');
 };
 
-/* Function to set a cookie with input name and value
-*  @param string name to set name for Cookie
-*  @param string value to set value for Cookie
-*  return none
+/**
+* Function to set a cookie with input name and value
+* @param string name to set name for Cookie.
+* @param string value to set value for Cookie.
+* @return void.
 */
 function setCookie(name, value)
 {
@@ -22,9 +23,10 @@ function setCookie(name, value)
   document.cookie = name + '=' + value + ';expires=' + now.toUTCString();
 }
 
-/* Function to get a cookie with input name
-*  @param string name to find name of Cookie
-*  return string
+/**
+* Function to get a cookie with input name
+* @param string name to find name of Cookie
+* @return string
 */
 function getCookie(name) {
   var listCookie = document.cookie.split(';');
@@ -36,9 +38,10 @@ function getCookie(name) {
   return 'Cookie này không tồn tại hoặc đã bị xóa..';
 }
 
-/* Function to remove a cookie with input name
-*  @param string name to find name of Cookie need to delete
-*  return none
+/**
+* Function to remove a cookie with input name
+* @param string name to find name of Cookie need to delete
+* @return none
 */
 function removeCookie(name) {
   var now = new Date();

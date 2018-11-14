@@ -3,7 +3,8 @@ $mainArray = $_POST['mainArray'];
 
 ajaxCalculate($mainArray);
 
-/* Function to summation and multiplication all value in an array then encode result with json:
+/**
+ * Function to summation and multiplication all value in an array then encode result with json:
  * @param array $mainArray to get value.
  * @return void.
  * */
@@ -11,6 +12,7 @@ function ajaxCalculate($mainArray)
 {
     $sum  = 0;
     $multiplication = 1;
+    // Run loop for to get sum and multiplication of all values in array
     for ($i = 0; $i < count($mainArray); $i++) {
         $sum += $mainArray[$i];
         $multiplication *= $mainArray[$i];

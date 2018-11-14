@@ -10,6 +10,7 @@
 <body>
   <h1>
       <?php
+      // Check cookie('success') are exist or not
       if (isset($_COOKIE['success'])) {
           echo $_COOKIE['success'];
       }
@@ -20,6 +21,7 @@
         <input type="text" name="txtSessionID">
         <h1>
             <?php
+            // Check cookie('errorKey') are exist or not
                 if (isset($_COOKIE['errorKey'])) {
                     echo $_COOKIE['errorKey'];
                 }
@@ -29,6 +31,7 @@
         <input type="text" name="txtSessionValue">
         <h1>
             <?php
+            // Check cookie('errorValue') are exist or not
                 if (isset($_COOKIE['errorValue'])) {
                     echo $_COOKIE['errorValue'];
                 }

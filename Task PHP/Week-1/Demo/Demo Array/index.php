@@ -43,6 +43,11 @@ demoArrayMap();
 echo '<hr>';
 demoArrayWalk();
 
+/**
+ * Function sort an array to ascending, descending with KEY or VALUE
+ * @param array $arrayNumber is a integer array to sort
+ * @return void
+ */
 function demoSort($arrayNumber)
 {
     echo '<b>Mảng số nguyên ban đầu:</b>';
@@ -81,7 +86,11 @@ function demoSort($arrayNumber)
     echo '</pre>';
 }
 
-// ARRAY_UNIQUE()
+/**
+ * Function to get all values not duplicate in an array
+ * @param array $arrayNumber is a integer array to fill
+ * @return void
+ */
 function demoArrayUnique($arrayNumber)
 {
     echo '- Sử dụng hàm <b>array_unique()</b> để xóa những giá trị trùng lặp trong mảng: <br>';
@@ -96,7 +105,11 @@ function demoArrayUnique($arrayNumber)
     echo '</pre>';
 }
 
-// EXPLODE()
+/**
+ * Function to split a string to an array with input delimiter
+ * @param string $name is a string to split.
+ * @return void
+ */
 function demoExplode(&$name)
 {
     echo '- Sử dụng hàm <b>explode()</b> để cắt một chuỗi thành mảng với chuỗi cắt là " ": <br>';
@@ -107,7 +120,11 @@ function demoExplode(&$name)
     echo '</pre>';
 }
 
-// IMPLODE()
+/**
+ * Function to join an array to string with input delimiter
+ * @param array $arrayName to join and convert to string.
+ * @return void
+ */
 function demoImplode(&$arrayName)
 {
     echo '- Sử dụng hàm <b>implode()</b> để nối một mảng thành chuỗi phân cách nhau bởi ký tự " ": <br>';
@@ -121,7 +138,11 @@ function demoImplode(&$arrayName)
     echo '</pre>';
 }
 
-// ARRAY_KEYS()
+/**
+ * Function to get all keys in array
+ * @param array $arrayInfo to get the key.
+ * @return void
+ */
 function demoArrayKeys($arrayInfo)
 {
     echo '- Sử dụng hàm <b>array_keys()</b> để lấy toàn bộ các key trong mảng và lấy 1 key với value = <b>21</b>: <br>';
@@ -139,7 +160,11 @@ function demoArrayKeys($arrayInfo)
     echo '</pre>';
 }
 
-// ARRAY_VALUES()
+/**
+ * Function to get all values in array
+ * @param array $arrayInfo to get the value.
+ * @return void
+ */
 function demoArrayValues($arrayInfo)
 {
     echo '- Sử dụng hàm <b>array_values()</b> để lấy về 1 mảng liên tục: <br>';
@@ -153,7 +178,11 @@ function demoArrayValues($arrayInfo)
     echo '</pre>';
 }
 
-// IN_ARRAY()
+/**
+ * Function to find a value in array
+ * @param array $arrayNumber to find the value.
+ * @return void
+ */
 function demoInArray($arrayNumber)
 {
     echo '- Sử dụng hàm <b>in_array()</b> để tìm VALUE trong mảng số nguyên: <br>';
@@ -175,7 +204,11 @@ function demoInArray($arrayNumber)
     echo '</pre>';
 }
 
-// ARRAY_SHIFT()
+/**
+ * Function to remove first position in array
+ * @param array $arrayNumber.
+ * @return void
+ */
 function demoArrayShift($arrayNumber)
 {
     echo '- Sử dụng hàm <b>array_shift()</b> để xóa phần tử đầu trong mảng số nguyên: <br>';
@@ -191,7 +224,11 @@ function demoArrayShift($arrayNumber)
     echo 'Phần tử bị xóa đi là: <b>' . $valueDeleted . '</b>';
 }
 
-// ARRAY_UNSHIFT()
+/**
+ * Function to add 1 or more values in first position of array
+ * @param array $arrayNumber.
+ * @return void
+ */
 function demoArrayUnshift($arrayNumber)
 {
     echo '<br><br>- Sử dụng hàm <b>array_unshift()</b> để thêm vào 1 hoặc nhiều phần tử vào đầu mảng số nguyên: <br>';
@@ -208,7 +245,11 @@ function demoArrayUnshift($arrayNumber)
     echo '</pre>';
 }
 
-// ARRAY_POP()
+/**
+ * Function to remove last position of array
+ * @param array $arrayNumber.
+ * @return void
+ */
 function demoArrayPop($arrayNumber)
 {
     echo '<br>- Sử dụng hàm <b>array_pop()</b> để xóa phần tử cuối của mảng số nguyên: <br>';
@@ -224,8 +265,10 @@ function demoArrayPop($arrayNumber)
     echo 'Phần tử bị xóa đi là: <b>' . $valueDeleted . '</b>';
 }
 
-
-// ARRAY_DIFF()
+/**
+ * Function to get all values of first array which not exist in second array
+ * @return void
+ */
 function demoArrayDiff()
 {
     $firstArray = ['name' => 'Đạt', 'ages' => 20, 'sex' => 'male', 'country' => 'Bến Tre'];
@@ -247,8 +290,10 @@ function demoArrayDiff()
     echo '</pre>';
 }
 
-
-// ARRAY_DIFF_KEY()
+/**
+ * Function to get all keys of first array which not exist in second array
+ * @return void
+ */
 function demoArrayDiffKey()
 {
     $firstArray = ['name' => 'Đạt', 'ages' => 20, 'sex' => 'male', 'country' => 'Bến Tre'];
@@ -270,7 +315,10 @@ function demoArrayDiffKey()
     echo '</pre>';
 }
 
-// ARRAY_INTERSECT()
+/**
+ * Function to get all values of first array which exist in second array
+ * @return void
+ */
 function demoArrayIntersect()
 {
     $firstArray = ['name' => 'Đạt', 'ages' => 20, 'sex' => 'male', 'country' => 'Bến Tre'];
@@ -292,7 +340,10 @@ function demoArrayIntersect()
     echo '</pre>';
 }
 
-// ARRAY_INTERSECT_KEY()
+/**
+ * Function to get all keys of first array which exist in second array
+ * @return void
+ */
 function demoArrayIntersectKey()
 {
     $firstArray = ['name' => 'Đạt', 'ages' => 20, 'sex' => 'male', 'country' => 'Bến Tre'];
@@ -314,7 +365,10 @@ function demoArrayIntersectKey()
     echo '</pre>';
 }
 
-// ARRAY_MERGE()
+/**
+ * Function to merge all values of all input arrays if duplicate key will get values of last array
+ * @return void
+ */
 function demoArrayMerge()
 {
     $firstArray = ['name' => 'Đạt', 'ages' => 20, 'sex' => 'male', 'country' => 'Bến Tre'];
@@ -336,7 +390,10 @@ function demoArrayMerge()
     echo '</pre>';
 }
 
-// ARRAY_MERGE_RECURSIVE()
+/**
+ * Function to merge all values of all arrays if duplicate key will create an array
+ * @return void
+ */
 function demoMergeRecursive()
 {
     $firstArray = ['name' => 'Đạt', 'ages' => 20, 'sex' => 'male', 'country' => 'Bến Tre'];
@@ -357,7 +414,10 @@ function demoMergeRecursive()
     echo '</pre>';
 }
 
-// ARRAY ADD ARRAY()
+/**
+ * Function to plus 2 arrays if key duplicate will get the value of first array
+ * @return void
+ */
 function demoArrayAddArray()
 {
     $firstArray = ['name' => 'Đạt', 'ages' => 20, 'sex' => 'male', 'country' => 'Bến Tre'];
@@ -379,7 +439,10 @@ function demoArrayAddArray()
     echo '</pre>';
 }
 
-// ARRAY_FILTER()
+/**
+ * Function to merge all values of all arrays if duplicate key will create an array
+ * @return void
+ */
 function demoArrayFilter($arrayNumber)
 {
     echo '<br>- Sử dụng hàm <b>array_filter()</b> để lọc phần tử chẵn và lẻ tương ứng với hàm callback() trả về: <br>';
@@ -402,8 +465,10 @@ function demoArrayFilter($arrayNumber)
     echo '</pre>';
 }
 
-
-// ARRAY_MAP()
+/**
+ * Function to join all values by position in array with callback function
+ * @return void
+ */
 function demoArrayMap()
 {
     $arrayFirstName = ['Mai Lâm Tấn', 'Lý Thiên', 'Huỳnh Quốc'];
@@ -427,7 +492,10 @@ function demoArrayMap()
     echo '</pre>';
 }
 
-// ARRAY_WALK()
+/**
+ * Function to get all values by position in array with callback function
+ * @return void
+ */
 function demoArrayWalk()
 {
     $arrayName = ['Đạt', 'Hưng', 'Khánh'];

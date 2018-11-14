@@ -2,9 +2,11 @@
 $submit = $_POST['btSubmit'];
 $file = $_FILES['fileUpload'];
 
+// If button submit was clicked -> upload file
 if (isset($submit)) {uploadFile($file);}
 
-/* Function to upload a input file to path uploads/
+/**
+ * Function to upload a input file to path uploads/
  * @param array $file to move this file to path uploads/
  * @return void.
  * */

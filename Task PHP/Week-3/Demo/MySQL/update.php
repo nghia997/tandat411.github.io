@@ -14,6 +14,7 @@ session_destroy();
 </head>
 <body>
   <?php
+  //Check the variable 'editID' are exist or not
     if (empty($_GET['editID'])) {
       die('Failed to update..');
     }
@@ -72,6 +73,9 @@ session_destroy();
   <!--SCRIPT-->
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/action.js"></script>
-  <?php if (isset($_SESSION['result'])) {echo "<script>alert('".$_SESSION['result']."');</script>";} ?>
+  <?php
+    //Check the Session 'result' are exist or not
+    if (isset($_SESSION['result'])) {echo "<script>alert('".$_SESSION['result']."');</script>";}
+  ?>
 </body>
 </html>

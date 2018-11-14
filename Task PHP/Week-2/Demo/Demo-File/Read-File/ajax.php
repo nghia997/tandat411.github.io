@@ -4,7 +4,8 @@ $file = $_FILES['fileUpload'];
 
 if (isset($submit)) {uploadFile($file);}
 
-/* Function to upload a input file to path uploads/ and show content of file with method fopen()
+/**
+ * Function to upload a input file to path uploads/ and show content of file with method fopen()
  * @param array $file to move this file to path uploads/
  * @return void.
  * */
@@ -18,6 +19,7 @@ function uploadFile($file)
         // Get content of file: Way 1
         $content = '';
         $handle = fopen($file['tmp_name'], 'r');
+        //Run loop while to get line in file
         while (!feof($handle)) {
             $content .= fgets($handle).'<br>';
         }

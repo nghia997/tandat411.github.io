@@ -3,8 +3,9 @@ class Session
 {
     private $db;
 
-    /*  Initialization method of class
-    *   @return void
+    /**
+    * Initialization method of class
+    * @return void
     */
     public function __construct()
     {
@@ -21,11 +22,12 @@ class Session
         register_shutdown_function('session_write_close');
     }
 
-    /*  Method to start sessions
-     *  @param string $sessionName to set name for this Session
-     *  @param boolean $secure to make sure cookie will sent sent over secure connections or not.
-     *  @return void
-     *  */
+    /**
+     * Method to start sessions
+     * @param string $sessionName to set name for this Session
+     * @param boolean $secure to make sure cookie will sent sent over secure connections or not.
+     * @return void
+     */
     public function start_session($sessionName, $secure)
     {
         $httponly = true;
@@ -33,6 +35,7 @@ class Session
         // Hash algorithm to use for the sessionid
         $session_hash = 'sha512';
 
+        // Find a hash is exist or not exist in function hash_algos()
         if (in_array($session_hash, hash_algos())) {
             ini_set('session.hash_function', $session_hash);
         }
@@ -59,15 +62,16 @@ class Session
 
         // Change the session name
         session_name($sessionName);
-
+        ini_set('session.save_path', __DIR__);
         // Start the session
         session_start();
 
     }
 
-    /*  Method to connect to database
-     *  @return boolean
-     *  */
+    /**
+     * Method to connect to database
+     * @return boolean
+     */
     public function open()
     {
         $host = 'localhost';
@@ -79,19 +83,21 @@ class Session
         return true;
     }
 
-    /*  Method to close connected with database
-     *  @return boolean
-     *  */
+    /**
+     * Method to close connected with database
+     * @return boolean
+     */
     public function close()
     {
         $this->db->close();
         return true;
     }
 
-    /*  Method to get data of id input session
-     *  @param string $id to get id of session in database
-     *  @return string $data of session
-     * */
+    /**
+     * Method to get data of id input session
+     * @param string $id to get id of session in database
+     * @return string $data of session
+     */
     public function read($id)
     {
         if (!isset($this->read_stmt)) {
@@ -112,11 +118,12 @@ class Session
         return $splitData[1];
     }
 
-    /*  Method to insert a new session or update old session
-     *  @param string $id to get id of session in database or set a new id for new session
-     *  @param string $data to get data of session in database or set a new data for new session
-     *  @return boolean
-     * */
+    /**
+     * Method to insert a new session or update old session
+     * @param string $id to get id of session in database or set a new id for new session
+     * @param string $data to get data of session in database or set a new data for new session
+     * @return boolean
+     */
     public function write($id, $data)
     {
         if (empty($data)) {
@@ -136,10 +143,11 @@ class Session
         return true;
     }
 
-    /*  Method to remove a session with input id
-     *  @param string $id to get session in database
-     *  @return boolean
-     * */
+    /**
+     * Method to remove a session with input id
+     * @param string $id to get session in database
+     * @return boolean
+     */
     function destroy($id)
     {
         if (!isset($this->delete_stmt)) {
@@ -150,10 +158,11 @@ class Session
         return true;
     }
 
-    /*  Method garbage collector to remove old sessions in database when the time exist are over
+    /**
+     *  Method garbage collector to remove old sessions in database when the time exist are over
      *  @param string $max to get life time of session in database
      *  @return boolean
-     * */
+     */
     function gc($max)
     {
         if (!isset($this->gc_stmt)) {
@@ -165,10 +174,11 @@ class Session
         return true;
     }
 
-    /*  Method to get sessionID or create a new random sessionID
-     *  @param string $id to get id of session in database
-     *  @return string $key or $random_key
-     * */
+    /**
+     * Method to get sessionID or create a new random sessionID
+     * @param string $id to get id of session in database
+     * @return string $key or $random_key
+     */
     private function getkey($id)
     {
         if (!isset($this->key_stmt)) {
@@ -188,11 +198,12 @@ class Session
         }
     }
 
-    /*  Method to encrypt a data of session with sessionID
-     *  @param string $data is a data will be encrypt
-     *  @param string $key is sessionID of this session
-     *  @return string $encrypted is a encrypted data
-     * */
+    /**
+     * Method to encrypt a data of session with sessionID
+     * @param string $data is a data will be encrypt
+     * @param string $key is sessionID of this session
+     * @return string $encrypted is a encrypted data
+     */
     private function encrypt($data, $key)
     {
         $salt = 'cH!swe!retReGu7W6bEDRup7usuDUh9THeD2CHeGE*ewr4n39=E@rAsp7c-Ph@pH';
@@ -201,11 +212,12 @@ class Session
         return $encrypted;
     }
 
-    /*  Method to decrypt a data of session with sessionID
-     *  @param string $data is a encrypted data will be decrypt
-     *  @param string $key is sessionID of this session
-     *  @return string $decrypted is a decrypted data
-     * */
+    /**
+     * Method to decrypt a data of session with sessionID
+     * @param string $data is a encrypted data will be decrypt
+     * @param string $key is sessionID of this session
+     * @return string $decrypted is a decrypted data
+     */
     public function decrypt($data, $key)
     {
         $salt = 'cH!swe!retReGu7W6bEDRup7usuDUh9THeD2CHeGE*ewr4n39=E@rAsp7c-Ph@pH';

@@ -4,12 +4,14 @@ $file = $_FILES['fileUpload'];
 
 if (isset($submit)) {uploadFile($file);}
 
-/* Function to upload a input file to path uploads/
+/**
+ * Function to upload a input file to path uploads/
  * @param array $file to move this file to path uploads/
  * @return void.
- * */
+ */
 function uploadFile($file)
 {
+    //Check the size of input file
     if ($file['size'] > 2097152) {
         echo '<script> alert("File size is too large, should be less than 2M."); </script>';
     } else if (!empty($file['name'])) {

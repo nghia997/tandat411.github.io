@@ -85,7 +85,7 @@ function demoSwitch()
     findNumber($value5);
 }
 
-/*
+/**
  *  - Input: Two values with type is a number.
  *  - Output: Swap two values.
  */
@@ -106,7 +106,7 @@ function swap(&$valueA, &$valueB)
     }
 }
 
-/*
+/**
  *  - Input: A num in [1->5].
  *  - Output: echo Name og Number, if Input not a correct value: echo a error message for this value.
  */

@@ -36,12 +36,13 @@ print_r($mainArray);
 echo '</pre> Result: ';
 descendingSort($array1, $mainArray);
 
-/* Function check input
- *  @params array $array1 to check.
- *  @params array $array2 to check.
- *  @params array $array3 to check.
- *  @throw LogicException with message "Invalid parameter [index]" if one of them is not an array
- *  @return none.
+/**
+ * Function check input
+ * @params array $array1 to check.
+ * @params array $array2 to check.
+ * @params array $array3 to check.
+ * @throw LogicException with message "Invalid parameter [index]" if one of them is not an array
+ * @return void.
  */
 function checkInput($array1, $array2, $array3)
 {
@@ -49,12 +50,15 @@ function checkInput($array1, $array2, $array3)
     $length = count($listParams);
     $failPosition = [];
 
+    // Run loop for to find fail input
     for ($i = 0; $i < $length; $i++) {
+        // If the input in position i are not an array -> add to array $failPosition
         if (!is_array($listParams[$i])) {
             $failPosition[] = $i + 1;
         }
     }
 
+    // If find a fail input -> @throw LogicException
     if (count($failPosition) == 0) {
         echo '<b>Correct</b><br>';
     } else {
@@ -63,9 +67,10 @@ function checkInput($array1, $array2, $array3)
     }
 }
 
-/* Function number 1 in first array
- *  @params array $firstArray to find number one in this array.
- *  @return none.
+/**
+ * Function number 1 in first array
+ * @params array $firstArray to find number one in this array.
+ * @return void.
  */
 function findNumberOne($firstArray)
 {
@@ -73,10 +78,11 @@ function findNumberOne($firstArray)
     echo '<br>';
 }
 
-/* Function merge 2 array in position 2 and 3, delete duplicate values
- *  @params array $secondArray to merge with $thirdArray.
- *  @param array $thirdArray to merge with $secondArray.
- *  @return none.
+/**
+ * Function merge 2 array in position 2 and 3, delete duplicate values
+ * @params array $secondArray to merge with $thirdArray.
+ * @param array $thirdArray to merge with $secondArray.
+ * @return void.
  */
 function mergeArrays($secondArray, $thirdArray)
 {
@@ -86,14 +92,16 @@ function mergeArrays($secondArray, $thirdArray)
     echo '<b>' . $result . '</b><br>';
 }
 
-/* Function filter out all values whose sum of digits is divisible by 2
- *  @params array $mainArray to filter even array.
- *  @return none.
+/**
+ * Function filter out all values whose sum of digits is divisible by 2
+ * @params array $mainArray to filter even array.
+ * @return void.
  */
 function evenArray($mainArray)
 {
     $arrayFilter = array_filter($mainArray, function ($value) {
         $total = 0;
+        // Run loop while to get a single number
         while ($value % 10 != 0) {
             $total += $value % 10;
             $value = $value / 10;
@@ -104,10 +112,11 @@ function evenArray($mainArray)
     echo '<b>' . $result . '</b><br>';
 }
 
-/* Function ascending sort all of the value of the first array that exists in the main array
- *  @param array $array1 to find duplicate values in $mainArray.
- *  @param array $mainArray for $array1 to find duplicate values.
- *  @return none.
+/**
+ * Function ascending sort all of the value of the first array that exists in the main array
+ * @param array $array1 to find duplicate values in $mainArray.
+ * @param array $mainArray for $array1 to find duplicate values.
+ * @return void.
  */
 function ascendingSort($array1, $mainArray)
 {
@@ -117,10 +126,11 @@ function ascendingSort($array1, $mainArray)
     echo '<b>' . $result . '</b><br>';
 }
 
-/* Function descending sort all the descending value of the first array whose key is not in the main array
- *  @param array $array1 to find duplicate key in $mainArray.
- *  @param array $mainArray for $array1 to find duplicate keys.
- *  @return none.
+/**
+ * Function descending sort all the descending value of the first array whose key is not in the main array
+ * @param array $array1 to find duplicate key in $mainArray.
+ * @param array $mainArray for $array1 to find duplicate keys.
+ * @return void.
  */
 function descendingSort($array1, $mainArray)
 {

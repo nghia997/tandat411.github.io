@@ -30,7 +30,7 @@ class BaseModel
     {
         $stmt = $this->database->prepare("DESCRIBE $this->table");
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll();
 
         // Run loop foreach to get all fields of table
         foreach ($result as $row) {
@@ -62,7 +62,7 @@ class BaseModel
     {
         $stmt = $this->database->prepare("SELECT * FROM $this->table");
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll();
         return ($result == false) ? null : $result;
     }
 
@@ -75,7 +75,7 @@ class BaseModel
     {
         $stmt = $this->database->prepare("SELECT * FROM $this->table WHERE $this->primaryKey='$id'");
         $stmt->execute([$id]);
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll();
         return ($result == false) ? null : $result;
     }
 

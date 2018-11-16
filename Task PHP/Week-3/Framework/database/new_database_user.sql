@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 15, 2018 lúc 09:19 AM
+-- Thời gian đã tạo: Th10 16, 2018 lúc 11:57 AM
 -- Phiên bản máy phục vụ: 10.1.32-MariaDB
 -- Phiên bản PHP: 7.2.5
 
@@ -36,8 +36,7 @@ USE `database_user`;
 --
 
 CREATE TABLE `classes` (
-  `id` int(11) NOT NULL,
-  `name` char(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` char(11) COLLATE utf8_unicode_ci NOT NULL,
   `num_of_students` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -59,7 +58,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `set_time`, `data`, `session_key`) VALUES
-('user', '1542269622', 'ª•ÓŠ¨1F›z€d	\n~6öiÃ„ƒÎ_o	‰Ù²°\\°', '1022386f5c0706c4ac6ecbd96c42b8f231a8e0153e2f302c854d6e6535dd4e69d65f427a10557be33b9f6eeeef2bf2ab324d179eea2525cf06d5ba1c39d2252f');
+('user', '1542364516', 'ª•ÓŠ¨1F›z€d	\n~6öiÃ„ƒÎ_o	‰Ù²°\\°', '1022386f5c0706c4ac6ecbd96c42b8f231a8e0153e2f302c854d6e6535dd4e69d65f427a10557be33b9f6eeeef2bf2ab324d179eea2525cf06d5ba1c39d2252f');
 
 -- --------------------------------------------------------
 
@@ -70,7 +69,7 @@ INSERT INTO `sessions` (`id`, `set_time`, `data`, `session_key`) VALUES
 CREATE TABLE `students` (
   `id` int(11) NOT NULL,
   `student_name` char(255) COLLATE utf8_unicode_ci NOT NULL,
-  `class_id` int(11) NOT NULL
+  `class_name` char(11) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -92,7 +91,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `birthday`) VALUES
-(52, 'tandat411', '123456789', 'abc@gmail.com', '1994-04-11');
+(55, 'tandat411', '$2y$10$nNdM1dgmOU5C4DvXTdsEiuJyPYnx4H7LrsYKVkwu8mXuWEuxqkB4G', 'xyz@gmail.com', '1994-04-04');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -102,7 +101,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `birthday`) VALUES
 -- Chỉ mục cho bảng `classes`
 --
 ALTER TABLE `classes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`name`);
 
 --
 -- Chỉ mục cho bảng `sessions`
@@ -115,7 +114,7 @@ ALTER TABLE `sessions`
 --
 ALTER TABLE `students`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `class_id` (`class_id`);
+  ADD KEY `class_name` (`class_name`);
 
 --
 -- Chỉ mục cho bảng `user`
@@ -128,22 +127,16 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT cho bảng `classes`
---
-ALTER TABLE `classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT cho bảng `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -153,7 +146,7 @@ ALTER TABLE `user`
 -- Các ràng buộc cho bảng `students`
 --
 ALTER TABLE `students`
-  ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`);
+  ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`class_name`) REFERENCES `classes` (`name`);
 --
 -- Cơ sở dữ liệu: `dbcinema1`
 --
@@ -3635,7 +3628,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2018-11-15 08:17:18', '{\"lang\":\"vi\",\"Console\\/Mode\":\"collapse\",\"DefaultConnectionCollation\":\"utf8_general_ci\"}');
+('root', '2018-11-16 10:35:06', '{\"lang\":\"vi\",\"Console\\/Mode\":\"collapse\",\"DefaultConnectionCollation\":\"utf8_general_ci\"}');
 
 -- --------------------------------------------------------
 

@@ -25,18 +25,20 @@ $pdo = Database::getInstance();
 try {
     // Run this code first to see Transaction FAIL
     $pdo->beginTransaction();
-    $pdo->exec("INSERT INTO students(student_name, class_id) VALUES('Mai Lam Tan Dat', 1)");
-    $pdo->exec("UPDATE classes SET num_of_students=num_of_students+1 WHERE id=1");
+    $pdo->exec("INSERT INTO classes(name, num_of_students) VALUES('6A', 0)");
+    $pdo->exec("INSERT INTO classes(name, num_of_students) VALUES('7A', 0)");
+    $pdo->exec("INSERT INTO students(student_name, class_name) VALUES('Mai Lam Tan Dat', '5A')");
+    $pdo->exec("UPDATE classes SET num_of_students=num_of_students+1 WHERE name='5A'");
     $pdo->commit();
 
     // Then run this code to add a class with id = 1 to table Classes and see this Transaction are success.
     /*$pdo->beginTransaction();
-    $pdo->exec("INSERT INTO classes(name, num_of_students) VALUES('5A', 0)");
-    $pdo->exec("INSERT INTO students(student_name, class_id) VALUES('Student A', 1)");
-    $pdo->exec("UPDATE classes SET num_of_students=num_of_students+1 WHERE id=1");
+    $pdo->exec("REPLACE INTO classes(name, num_of_students) VALUES('5A', 0)");
+    $pdo->exec("INSERT INTO students(student_name, class_name) VALUES('Student A', '5A')");
+    $pdo->exec("UPDATE classes SET num_of_students=num_of_students+1 WHERE name='5A'");
     $pdo->commit();*/
     echo 'Run Transaction are success..';
 } catch (Exception $e) {
     $pdo->rollback();
-    echo $e->getMessage();
+    echo '<h3>'.$e->getMessage().'</h3>';
 }

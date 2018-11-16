@@ -72,10 +72,10 @@ class UserController extends BaseController
         }
 
         $data = $user->all();
-        $name = $_POST['txtName'];
-        $pass = $_POST['txtPass'];
-        $email = $_POST['txtEmail'];
-        $birthDay = $_POST['txtDoB'];
+        $name = htmlspecialchars($_POST['txtName']);
+        $pass = password_hash(htmlspecialchars($_POST['txtPass']), PASSWORD_BCRYPT);
+        $email = htmlspecialchars($_POST['txtEmail']);
+        $birthDay = htmlspecialchars($_POST['txtDoB']);
         $validate = [];
 
         // Check the input username are empty or not
@@ -130,10 +130,10 @@ class UserController extends BaseController
     {
         $user = new User();
         $data = $user->all();
-        $name = $_POST['txtName'];
-        $pass = $_POST['txtPass'];
-        $email = $_POST['txtEmail'];
-        $birthDay = $_POST['txtDoB'];
+        $name = htmlspecialchars($_POST['txtName']);
+        $pass = password_hash(htmlspecialchars($_POST['txtPass']), PASSWORD_BCRYPT);
+        $email = htmlspecialchars($_POST['txtEmail']);
+        $birthDay = htmlspecialchars($_POST['txtDoB']);
         $validate = [];
 
         // Check the input username are empty or not

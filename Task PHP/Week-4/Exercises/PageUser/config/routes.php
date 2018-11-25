@@ -30,12 +30,25 @@ Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
     /**
-     * Connect '/' (base path) to a controller called 'Pages',
-     * its action called 'news', and we pass a param to select the view file
-     * to use (in this case, src/Template/Pages/news.ctp)...
+     * Here, we are connecting '/' (base path) to a controller called 'Pages',
+     * its action called 'display', and we pass a param to select the view file
+     * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    $routes->connect('/',['controller' => 'Pages', 'action' => 'news']);
+    $routes->connect('/', ['controller' => 'Users', 'action' => 'index']);
 
+    $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+
+    $routes->connect('/change-password', ['controller' => 'Users', 'action' => 'changePassword']);
+
+    $routes->connect('/register', ['controller' => 'Users', 'action' => 'register']);
+
+    $routes->connect('/edit/:id', ['controller' => 'Users', 'action' => 'edit']);
+
+    $routes->connect('/welcome', ['controller' => 'Users', 'action' => 'welcome']);
+
+    $routes->connect('/info/:id', ['controller' => 'Users', 'action' => 'info']);
+    $routes->connect('/delete/:id', ['controller' => 'Users', 'action' => 'delete']);
     /**
      * Connect catchall routes for all controllers.
      *

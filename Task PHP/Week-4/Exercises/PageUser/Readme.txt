@@ -1,0 +1,1 @@
+﻿Tất cả tài khoản đều có password là 123456

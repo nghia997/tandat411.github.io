@@ -13,10 +13,9 @@
 		<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	    Sort by
 		</a>
-
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 			<p class="dropdown-item">
-				<?php echo $this->Paginator->sort("id", "No sort");?>	
+				<?php echo $this->Paginator->sort("id", "No sort");?>
 			</p>
 			<p class="dropdown-item">
 		    	<?php echo $this->Paginator->sort("name", "Sort by Name");?>
@@ -70,12 +69,12 @@
 			foreach ($users[$i] as $item) {
 				echo "<td>$item</td>";
 			}
-			
+
 			echo "<td>
 					<a href=" . $this->request->base . "/info/" . $users[$i]['id'] . ">Detail</a>
 				  </td>";
 			echo "<td>".
-				$this->Html->link('Delete', 
+				$this->Html->link('Delete',
 				['action' => 'delete', 'id' => $users[$i]['id']],
           		['confirm' => 'Are you sure you want to delete this user?'])
 				  ."</td>";

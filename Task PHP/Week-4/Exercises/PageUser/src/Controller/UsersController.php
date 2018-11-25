@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use Cake\Core\Configure;
@@ -14,8 +15,8 @@ use Cake\I18n\Time;
  * Static content controller
  * This controller will render views from Template/Users/
  */
- class UsersController extends AppController
- {
+class UsersController extends AppController
+{
 
     /**
      * Method to display a view of Index page
@@ -105,7 +106,7 @@ use Cake\I18n\Time;
                         $this->Users->save($thisUser);
                         $this->Auth->setUser($user);
                         // After login: redirect to welcome page
-                        $this->redirect(['controller' => 'Users','action' => 'welcome']);
+                        $this->redirect(['controller' => 'Users', 'action' => 'welcome']);
                     } else {
                         $this->Flash->error('This account need to active. 
                             Please, check your email to verification this account..');
@@ -130,7 +131,7 @@ use Cake\I18n\Time;
         $this->Users->save($thisUser);
         $this->Auth->logout();
         // After logout: redirect to login page
-        $this->redirect(['controller' => 'Users','action' => 'login']);
+        $this->redirect(['controller' => 'Users', 'action' => 'login']);
     }
 
     /**
@@ -196,23 +197,23 @@ use Cake\I18n\Time;
                 $this->set($validation);
             } else {
                 // Generate random key
-                $randomKey = substr(md5(microtime()),0,10);
+                $randomKey = substr(md5(microtime()), 0, 10);
                 // Put the key to array $input
                 $input['key'] = $randomKey;
                 // Create a link to help user active email
                 $activeLink = Router::url([
-                    "controller" => "Users", 
-                    "action" => "active/".$randomKey
-                    ], true);
+                    "controller" => "Users",
+                    "action" => "active/" . $randomKey
+                ], true);
                 // Move file upload to webroot
                 $file = $_FILES['txtAvatar'];
                 $fileName = $file['name'];
-                move_uploaded_file($file['tmp_name'], 'uploads/'.$file['name']);
+                move_uploaded_file($file['tmp_name'], 'uploads/' . $file['name']);
                 // Bind data to new user
                 $insert = $this->Users->patchEntity($user, [
-                    'name' => $input['txtName'], 
-                    'sex' => $input['txtSex'], 
-                    'email' => $input['txtEmail'], 
+                    'name' => $input['txtName'],
+                    'sex' => $input['txtSex'],
+                    'email' => $input['txtEmail'],
                     'password' => $input['txtPass'],
                     'avatar' => $fileName,
                     'address' => $input['txtAddress'],
@@ -229,7 +230,7 @@ use Cake\I18n\Time;
                     $email->transport('gmail');
                     $message = "Dear {$input['txtName']},<br>";
                     $message .= "Thank you for join with us. Your active link below:<br>";
-                    $message .= "<a href='".$activeLink."'>Verify this account</a>";
+                    $message .= "<a href='" . $activeLink . "'>Verify this account</a>";
                     $email->emailFormat('html')
                         ->from(['1551010024.dat@gmail.com' => 'Tấn Đạt'])
                         ->to($input['txtEmail'])
@@ -265,7 +266,7 @@ use Cake\I18n\Time;
             $this->Users->save($thisUser);
         } else {
             // Active fail: redirect to login page
-            $this->redirect(['controller' => 'Users','action' => 'login']);
+            $this->redirect(['controller' => 'Users', 'action' => 'login']);
             $this->Flash->error('Something has wrong, your email was not active.');
         }
     }
@@ -277,7 +278,7 @@ use Cake\I18n\Time;
     public function edit()
     {
         $id = htmlspecialchars($this->request->getParam('id'));
-        $user = $this->Users->find('all',[
+        $user = $this->Users->find('all', [
             'conditions' => ['id' => $id]
         ])->toArray();
         // Check this user is exist or not
@@ -305,10 +306,10 @@ use Cake\I18n\Time;
                         // Move file upload to webroot
                         $file = $_FILES['txtAvatar'];
                         $fileName = $file['name'];
-                        move_uploaded_file($file['tmp_name'], 'uploads/'.$file['name']);
+                        move_uploaded_file($file['tmp_name'], 'uploads/' . $file['name']);
                         $user->avatar = $fileName;
                     }
-                    $user->name =  $input['txtName'];
+                    $user->name = $input['txtName'];
                     $user->sex = $input['txtSex'];
                     $user->address = $input['txtAddress'];
                     $user->email = $input['txtEmail'];
@@ -344,7 +345,7 @@ use Cake\I18n\Time;
     public function info()
     {
         $id = htmlspecialchars($this->request->getParam('id'));
-        $user = $this->Users->find('all',[
+        $user = $this->Users->find('all', [
             'conditions' => ['id' => $id]
         ])->toArray();
         // Check this user is exist or not
@@ -364,7 +365,7 @@ use Cake\I18n\Time;
     public function delete()
     {
         $id = htmlspecialchars($this->request->getParam('id'));
-        $user = $this->Users->find('all',[
+        $user = $this->Users->find('all', [
             'conditions' => ['id' => $id]
         ])->toArray();
         // Check this user is exist or not

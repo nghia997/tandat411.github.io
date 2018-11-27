@@ -39,7 +39,7 @@ class UsersController extends AppController
             if ($validation != null) {
                 $this->set($validation);
             } else {
-                // Format for reuturn data paginate
+                // Format data to return data paginate
                 $this->paginate = [
                     'limit' => 20,
                     'order' => ['id' => 'asc'],

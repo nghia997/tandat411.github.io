@@ -247,7 +247,7 @@ class SocialController extends AppController
         // If this request isn't POST: check param $token in URL is correct or not
         } else if (isset($_SESSION['token']) && ($_SESSION['token'] == $token)) {
             // Check session 'state' isn't exists and this URL hasn't variable 'page' 
-            if (!isset($_SESSION['state']) || !isset($_GET['page'])) {
+            if (!isset($_SESSION['state']) || (!isset($_GET['page']) && $_SESSION['state'] == 'none')) {
                 // Save this state is none
                 $_SESSION['state'] = 'none';
                 // Get paginate data in table 'post_social' limit with 5

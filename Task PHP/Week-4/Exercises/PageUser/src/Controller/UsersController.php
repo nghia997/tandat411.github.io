@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+session_start();
 use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
@@ -25,10 +26,6 @@ class UsersController extends AppController
     public function index()
     {
         $listUser = [];
-        $this->paginate = [
-            'limit' => 2,
-            'order' => ['id' => 'asc']
-        ];
         // Check this request is POST or not
         if ($this->request->is('post')) {
             // Get all data request to array $input
@@ -39,7 +36,9 @@ class UsersController extends AppController
             if ($validation != null) {
                 $this->set($validation);
             } else {
+                $_SESSION['state'] = 'search';
                 // Format data to return data paginate
+                $_SESSION['data'] = $input;
                 $this->paginate = [
                     'limit' => 2,
                     'order' => ['id' => 'asc'],
@@ -62,11 +61,50 @@ class UsersController extends AppController
                 $this->set(['users' => $listUser]);
             }
         } else {
-            $users = $this->paginate()->toArray();
-            for ($i = 0; $i < count($users); $i++) {
-                $listUser[] = $users[$i]->toArray();
+            if (!isset($_SESSION['state']) || (!isset($_GET['page']) && $_SESSION['state'] == 'none')) {
+                $_SESSION['state'] = 'none';
+                $this->paginate = [
+                    'limit' => 2,
+                    'order' => ['id' => 'asc']
+                ];
+                $users = $this->paginate()->toArray();
+                for ($i = 0; $i < count($users); $i++) {
+                    $listUser[] = $users[$i]->toArray();
+                }
+                $this->set(['users' => $listUser]);
+            } else if ($_SESSION['state'] == 'search') {
+                $this->paginate = [
+                    'limit' => 2,
+                    'order' => ['id' => 'asc'],
+                    'conditions' => [
+                        'OR' => [
+                            'id' => $_SESSION['data']['txtSearch'],
+                            'name LIKE' => '%' . $_SESSION['data']['txtSearch'] . '%',
+                            'email LIKE' => '%' . $_SESSION['data']['txtSearch'] . '%',
+                            'address LIKE' => '%' . $_SESSION['data']['txtSearch'] . '%',
+                            'sex LIKE' => '%' . $_SESSION['data']['txtSearch'] . '%',
+                            'status LIKE' => '%' . $_SESSION['data']['txtSearch'] . '%'
+                        ]
+                    ]
+                ];
+                $users = $this->paginate()->toArray();
+                // Run loop for to make every object to array then add to array $listUser
+                for ($i = 0; $i < count($users); $i++) {
+                    $listUser[] = $users[$i]->toArray();
+                }
+                $this->set(['users' => $listUser]);
+            } else {
+                $_SESSION['state'] = 'none';
+                $this->paginate = [
+                    'limit' => 2,
+                    'order' => ['id' => 'asc']
+                ];
+                $users = $this->paginate()->toArray();
+                for ($i = 0; $i < count($users); $i++) {
+                    $listUser[] = $users[$i]->toArray();
+                }
+                $this->set(['users' => $listUser]);
             }
-            $this->set(['users' => $listUser]);
         }
     }
 

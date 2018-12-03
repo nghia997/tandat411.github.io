@@ -50,7 +50,7 @@
 <!-- SHOW DATA -->
 <?php
 // Check list user has data or not
-if ($users == null) {
+if (!isset($users) || $users == null) {
 	echo "<h1 class='text-center'>No data to show</h1>";
 } else {
 
@@ -84,20 +84,16 @@ if ($users == null) {
 		echo "</tr>";
 	}
 	echo "</table>";
-}
+  echo "
+  <div class='float-right'>
+    <ul class='pagination'>
+    {$this->Paginator->prev('« Previous ', ['class' => 'disabled'])}
+    {$this->Paginator->numbers()}
+    {$this->Paginator->next('Next »', ['class' => 'disabled'])}
+    </ul>
+    <p class='text-right clearfix'>
+     Page {$this->Paginator->counter('{{page}}/{{pages}}, show {{current}} of {{count}} users')}
+    </p>
+  </div>";
+  }
 ?>
-
-<!-- PAGINATION -->
-<div class="float-right">
-  <ul class="pagination">
-	<?php
-	echo $this->Paginator->prev('« Previous ', ['class' => 'disabled']);
-	echo $this->Paginator->numbers();
-	echo $this->Paginator->next('Next »', ['class' => 'disabled']);
-	?>
-  </ul>
-  <p class="text-right clearfix">
-	<?= " Page ". $this->Paginator->counter('{{page}}/{{pages}}, show {{current}} of {{count}} users') ?>
-  </p>
-</div>
-

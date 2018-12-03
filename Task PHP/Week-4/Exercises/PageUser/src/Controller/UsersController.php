@@ -26,7 +26,7 @@ class UsersController extends AppController
     {
         $listUser = [];
         $this->paginate = [
-            'limit' => 20,
+            'limit' => 2,
             'order' => ['id' => 'asc']
         ];
         // Check this request is POST or not
@@ -41,7 +41,7 @@ class UsersController extends AppController
             } else {
                 // Format data to return data paginate
                 $this->paginate = [
-                    'limit' => 20,
+                    'limit' => 2,
                     'order' => ['id' => 'asc'],
                     'conditions' => [
                         'OR' => [

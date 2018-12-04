@@ -6,8 +6,8 @@ define('FACEBOOK_LOGIN_FAILURE', 'Something went wrong !!!');
 define('BASE_PATH', 'http://localhost/tandat411.github.io/Task%20PHP/Week-5/Facebook');
 
 //thông tin facebook app
-define('FACEBOOK_APP_ID', '225709528181451');
-define('FACEBOOK_APP_SECRET', '00d198c51cb32817a5da30cfb34797e4'); 
+define('FACEBOOK_APP_ID', '1013156468871860');
+define('FACEBOOK_APP_SECRET', '58212ae6de206d1cc294687e27a0c557'); 
 define('FACEBOOK_REDIRECT_URI', 
 	'http://localhost/tandat411.github.io/Task%20PHP/Week-5/Facebook/callback');
 

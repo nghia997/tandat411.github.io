@@ -61,7 +61,7 @@ class UsersController extends AppController
                 $this->set(['users' => $listUser]);
             }
         } else {
-            if (!isset($_SESSION['state']) || (!isset($_GET['page']) && $_SESSION['state'] == 'none')) {
+            if (!isset($_SESSION['state']) || (!isset($_GET['page']))) {
                 $_SESSION['state'] = 'none';
                 $this->paginate = [
                     'limit' => 2,

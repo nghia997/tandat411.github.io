@@ -54,11 +54,13 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/', ['controller' => 'Social', 'action' => 'login']);
 
+    $routes->connect('/callback', ['controller' => 'Social', 'action' => 'callback']);
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
-    $routes->connect('/home:token', ['controller' => 'Social', 'action' => 'home']);
-    $routes->connect('/callback', ['controller' => 'Social', 'action' => 'callback']);
+    $routes->connect('/home:token', ['controller' => 'Social', 'action' => 'getHome']);
+    $routes->connect('/home:token', ['controller' => 'Social', 'action' => 'postHome']);
+
 
     /**
      * Connect catchall routes for all controllers.

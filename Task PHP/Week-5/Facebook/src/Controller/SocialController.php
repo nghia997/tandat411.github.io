@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Model\Table\AccountSocialTable;
+use App\Model\Table\PostSocialTable;
 use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
@@ -28,10 +30,10 @@ class SocialController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->session = $this->getRequest()->getSession();
         $this->loadModel('AccountSocial');
         $this->loadModel('PostSocial');
         $this->loadComponent('Paginator');
+        $this->session = $this->getRequest()->getSession();
         $this->facebook = new \Facebook\Facebook([
            'app_id' => FACEBOOK_APP_ID,
            'app_secret' => FACEBOOK_APP_SECRET,
@@ -306,7 +308,7 @@ class SocialController extends AppController
                     $this->set(['posts' => $getPosts]);
                 }
             }
-            $this->render('home');
+            $this->redirect(['controller' => 'Social', 'action' => 'getHome', $this->session->read('token')]);
         }
     }
 

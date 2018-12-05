@@ -9,7 +9,7 @@
 ]) ?>
 <p>Search by Name: </p>
 <div class="form-inline">
-	<?= $this->Form->text('txtSearchByName', [
+	<?= $this->Form->text('txtSearchPostByName', [
 		'class' => 'form-control', 
 		'placeholder' => 'Search by name..'
 	]) ?>

@@ -21,7 +21,7 @@ class SocialController extends AppController
 {
     private $facebook;
     private $session;
-    private $listPost;
+    private $columns;
 
     /**
      * Initialization hook method.
@@ -35,7 +35,7 @@ class SocialController extends AppController
         $this->loadModel('PostSocial');
         $this->loadComponent('Paginator');
         $this->session = $this->getRequest()->getSession();
-        $this->listPost = 
+        $this->columns = $this->PostSocial->schema()->columns();
         $this->facebook = new \Facebook\Facebook([
            'app_id' => FACEBOOK_APP_ID,
            'app_secret' => FACEBOOK_APP_SECRET,
@@ -113,41 +113,39 @@ class SocialController extends AppController
 
                 $this->AccountSocial->save($insertAccount);
                 // Insert list post of this User
-                foreach ($listPost as $post) {
-                    $item = $this->PostSocial->newEntity();
-                    $likes = $post['likes']->getMetaData();
-                    $insertPost = $this->PostSocial->patchEntity($item, [
-                        'post_id' => $post['id'],
-                        'name' => (isset($post['name'])) ? $post['name'] : '',
-                        'created_date' => $post['created_time'],
-                        'num_of_like' => $likes['summary']['total_count'],
-                        'account_id' => $user['id']
-                    ]);
-                    $this->PostSocial->save($insertPost);
-                }
+                $this->addOrUpdatePost($listPost);
             } else {
-                /*
-                 * If this User had existed: Update list post
-                 * Run loop to find every post in list post
-                 */
-                foreach ($listPost as $post) {
-                    // Check this post had existed or not
-                    if (!$this->PostSocial->checkPost($post['id'])) {
-                        // If not exist: Insert a new post
-                        $item = $this->PostSocial->newEntity();
-                        $likes = $post['likes']->getMetaData();
-                        $insertPost = $this->PostSocial->patchEntity($item, [
-                            'post_id' => $post['id'],
-                            'name' => (isset($post['name'])) ? $post['name'] : '',
-                            'created_date' => $post['created_time'],
-                            'num_of_like' => $likes['summary']['total_count'],
-                            'account_id' => $user['id']
-                        ]);
-                        $this->PostSocial->save($insertPost);
-                    }
-                }
+                // Update list post of this User
+                $this->addOrUpdatePost($listPost);
             }
             $this->redirect(['action' => 'getHome/', $accessToken]);
+        }
+    }
+
+
+    /**
+     * Method to add new post or update that post if existed.
+     * @param array $listPost is list posts of user had logged.
+     * @return void
+     */
+    public function addOrUpdatePost($listPost = [])
+    {
+        // Run loop to find every post in list post
+        foreach ($listPost as $post) {
+            // Check this post had existed or not
+            if (!$this->PostSocial->checkPost($post['id'])) {
+                // If not exist: Insert a new post
+                $item = $this->PostSocial->newEntity();
+                $likes = $post['likes']->getMetaData();
+                $insertPost = $this->PostSocial->patchEntity($item, [
+                    'post_id' => $post['id'],
+                    'name' => (isset($post['name'])) ? $post['name'] : '',
+                    'created_date' => $post['created_time'],
+                    'num_of_like' => $likes['summary']['total_count'],
+                    'account_id' => $user['id']
+                ]);
+                $this->PostSocial->save($insertPost);
+            }
         }
     }
 
@@ -160,64 +158,53 @@ class SocialController extends AppController
     {
         // Set title for Home page
         $this->set('title', 'Social');
+        $data = $this->request->getQuery();
 
         // If this request isn't POST: check param $token in URL is correct or not
         if ($this->session->read('token') && ($this->session->read('token') == $token)) {
             // Check session 'state' isn't exists and this URL hasn't variable 'page' 
-            if (!isset($_GET['state']) || (!isset($_GET['page']) && $_GET['state'] == 'none')) {
+            if (!isset($data['state']) || (!isset($_GET['page']) && $data['state'] == 'none')) {
                 // Save this state is none
-                $_GET['state'] = 'none';
+                $data['state'] = 'none';
                 // Get paginate data in table 'post_social' limit with 5
                 $posts = $this->Paginator->paginate(
                     $this->PostSocial->getAll(), 
                     ['limit' => 5]
                 );
-                // Convert array object $posts to array
-                $getPosts = $this->getData($posts);
-                $this->set(['posts' => $getPosts]);
+                $this->set(['posts' => $posts, 'columns' => $this->columns]);
             // Check this state is none or searching
-            } else if ($_GET['state'] != 'none') {
+            } else if ($data['state'] != 'none') {
                 // Check this state is searching by name or not
-                if ($_GET['state'] == 'search-name' && isset($_GET['name'])) {
+                if ($data['state'] == 'search-name' && isset($data['name'])) {
                     // Get paginate data in table 'post_social' limit with 5
                     $posts = $this->Paginator->paginate(
-                        $this->PostSocial->findByName($_GET['name']), 
+                        $this->PostSocial->findByName($data['name']), 
                         ['limit' => 5]
                     );
-                    // Convert array object $posts to array
-                    $getPosts = $this->getData($posts);
-                    $this->set(['posts' => $getPosts]);
+                    $this->set(['posts' => $posts, 'columns' => $this->columns]);
                 // Check this state is searching by num of like or not
-                } else if ($_GET['state'] == 'search-like' && isset($_GET['number'])) {
+                } else if ($data['state'] == 'search-like' && isset($data['number'])) {
                     // Get paginate data in table 'post_social' limit with 5
                     $posts = $this->Paginator->paginate(
-                        $this->PostSocial->findByNumOfLike($_GET['number']), 
+                        $this->PostSocial->findByNumOfLike($data['number']), 
                         ['limit' => 5]
                     );
-                    // Convert array object $posts to array
-                    $getPosts = $this->getData($posts);
-                    // Set data for this view
-                    $this->set(['posts' => $getPosts]);
+                    $this->set(['posts' => $posts, 'columns' => $this->columns]);
                 // Check this state is searching by date or not
-                } else if ($_GET['state'] == 'search-date' && isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+                } else if ($data['state'] == 'search-date' && isset($data['dateFrom']) && isset($_GET['dateTo'])) {
                     // Get paginate data in table 'post_social' limit with 5
                     $posts = $this->Paginator->paginate(
-                        $this->PostSocial->findByDate($_GET['dateFrom'], $_GET['dateTo']), 
+                        $this->PostSocial->findByDate($data['dateFrom'], $data['dateTo']), 
                         ['limit' => 5]
                     );
-
-                    // Convert array object $posts to array
-                    $getPosts = $this->getData($posts);
-                    $this->set(['posts' => $getPosts]);
+                    $this->set(['posts' => $posts, 'columns' => $this->columns]);
                 }
             } else {
                 // Save this state is none
-                $_GET['state'] = 'none';
+                $data['state'] = 'none';
                 // Get paginate data in table 'post_social' limit with 5
                 $posts = $this->Paginator->paginate($this->PostSocial->find('all'), ['limit' => 5]);
-                // Convert array object $posts to array
-                $getPosts = $this->getData($posts);
-                $this->set(['posts' => $getPosts]);
+                $this->set(['posts' => $posts, 'columns' => $this->columns]);
             }
             $this->render('home');
         } else {
@@ -233,7 +220,7 @@ class SocialController extends AppController
     {
         if ($this->request->is('post')) {
             // Check button Search by Name is click or not
-            if (isset($_POST['btnSearchPostByName'])) {
+            if (empty($this->request->data('btnSearchPostByName'))) {
                 $name = htmlspecialchars($this->request->data('txtSearchPostByName'));
 
                 if (empty($name)) {
@@ -241,9 +228,7 @@ class SocialController extends AppController
                 }
                 // Get paginate data in table 'post_social' limit with 5
                 $posts = $this->Paginator->paginate($this->PostSocial->findByName($name), ['limit' => 5]);
-                // Convert array object $posts to array
-                $getPosts = $this->getData($posts);
-                $this->set(['posts' => $getPosts]);
+                $this->set(['posts' => $posts, 'columns' => $this->columns]);
 
                 $this->redirect([
                     'controller' => 'Social', 'action' => 'getHome', 
@@ -252,7 +237,7 @@ class SocialController extends AppController
                     'name' => $name
                 ]);
             // Check button Search by Num of like is click or not
-            } else if (isset($_POST['btnSearchPostByLike'])) {
+            } else if (empty($this->request->data('btnSearchPostByLike'))) {
                 $number = htmlspecialchars($this->request->data('txtSearchPostByLike'));
 
                 // Check input is a number or not
@@ -261,9 +246,8 @@ class SocialController extends AppController
                 }
                 // Get paginate data in table 'post_social' limit with 5
                 $posts = $this->Paginator->paginate($this->PostSocial->findByNumOfLike($number), ['limit' => 5]);
-                // Convert array object $posts to array
-                $getPosts = $this->getData($posts);
-                $this->set(['posts' => $getPosts]);
+                // Get all fields of table
+                $this->set(['posts' => $posts, 'columns' => $this->columns]);
 
                 $this->redirect([
                     'controller' => 'Social', 'action' => 'getHome', 
@@ -282,10 +266,7 @@ class SocialController extends AppController
                 } else {
                     // Get paginate data in table 'post_social' limit with 5
                     $posts = $this->Paginator->paginate($this->PostSocial->findByDate($from, $to), ['limit' => 5]);
-
-                    // Convert array object $posts to array
-                    $getPosts = $this->getData($posts);
-                    $this->set(['posts' => $getPosts]);
+                    $this->set(['posts' => $posts, 'columns' => $this->columns]);
                 }
                 $this->redirect([
                     'controller' => 'Social', 'action' => 'getHome', 
@@ -296,20 +277,5 @@ class SocialController extends AppController
                 ]);
             }
         }
-    }
-
-    /**
-     * Method to convert every object in array to an array.
-     * @param array $data is the array object to convert.
-     * @return array $result
-     */
-    private function getData($data = [])
-    {
-        $result = [];
-        // Run loop to convert object $item to array and add to array $result
-        foreach ($data as $item) {
-            $result[] = $item->toArray();
-        }
-        return $result;
     }
 }

@@ -51,22 +51,22 @@
 <?= $this->Form->end() ?>
 <?php
 // Check list post has data or not
-if (isset($posts) && $posts != null) {
-	$listPaginate = $posts;
+ if (isset($posts) && $posts != null) {
 	echo "<table class='table table-hover table-dark'>";
 	echo "<tr class='text-warning text-uppercase font-weight-bold'>";
 	// Run loop to get all field in table 'post_social'
-	foreach ($posts[0] as $key => $value) {
-		echo "<th>{$key}</th>";
+	foreach ($columns as $field) {
+		echo "<th>{$field}</th>";
 	}
 	echo "</tr>";
 	// Run loop to get every row in table 'post_social'
 	foreach ($posts as $row) {
 		echo "<tr>";
-		// Run loop to get every value on single row
-		foreach ($row as $item) {
-			echo "<td>{$item}</td>";
-		}
+		echo "<td>{$row->post_id}</td>";
+		echo "<td>{$row->name}</td>";
+		echo "<td>{$row->created_date}</td>";
+		echo "<td>{$row->num_of_like}</td>";
+		echo "<td>{$row->account_id}</td>";
 		echo "</tr>";
 	}
 	echo "</table>";

@@ -19,4 +19,6 @@ class AccountSocialTable extends Table
         
         return ($user) ? true : false;
 	}
+
+    
 }

@@ -16,15 +16,27 @@ class ChatTable extends Table
 	}
 
 	/**
-     * Method to get all chat
+     * Method to get all chat in room
      * @param string $roomId is the room id to get.
      * @return array object 
      */
-	public function getRoom($roomId)
+	public function getAllChatInRoom($roomId)
 	{
 		return $this->find('all', [
 			'conditions' => ['room_id' => $roomId]
 		]);
+	}
+
+	/**
+     * Method to get first chat in room
+     * @param string $roomId is the room id to get.
+     * @return object
+     */
+	public function getFirstChatInRoom($roomId)
+	{
+		return $room = $this->find('all', [
+			'conditions' => ['room_id' => $roomId]
+		])->first();
 	}
 
 	/**
@@ -45,17 +57,5 @@ class ChatTable extends Table
 			'readed' => $data['readed']
 		]);
 		$this->save($insert);
-	}
-
-	/**
-     * Method to get first chat
-     * @param string $roomId is the room id to get.
-     * @return object
-     */
-	public function findRoom($roomId)
-	{
-		return $room = $this->find('all', [
-			'conditions' => ['room_id' => $roomId]
-		])->first();
 	}
 }

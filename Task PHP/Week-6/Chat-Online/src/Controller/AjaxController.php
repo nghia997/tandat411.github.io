@@ -33,7 +33,7 @@ class AjaxController extends AppController
                 'shopId' => $item->shop,
                 'clientId' => $client->id,
                 'roomId' => $data['roomId'],
-                'message' => htmlspecialchars($data['message']),
+                'message' => h($data['message']),
                 'messageFrom' => $data['messageFrom'],
                 'readed' => ($data['messageFrom'] == 'shop') ? 1 : 0
             ];
@@ -53,11 +53,11 @@ class AjaxController extends AppController
             $data = $this->request->getData();
             $item = $this->Item->get($data['itemId']);
             $roomId = $data['roomId'];
-            $room = $this->Chat->findRoom($roomId);
+            $room = $this->Chat->getFirstChatInRoom($roomId);
             $shop = $this->Shop->get($item->shop);
             $user = $this->Client->get($room->client);
 
-            $listChat = $this->Chat->getRoom($roomId);
+            $listChat = $this->Chat->getAllChatInRoom($roomId);
             // Run loop foreach to show all chat of group
             foreach ($listChat as $row) {
             	if ($row->message_from == 'client') {
@@ -89,7 +89,7 @@ class AjaxController extends AppController
 			$item = $this->Item->get($chat->item);
 			$client = $this->Client->get($chat->client);
 			$shop = $this->Shop->get($chat->shop);
-			$listChat = $this->Chat->getRoom($chat->room_id);
+			$listChat = $this->Chat->getAllChatInRoom($chat->room_id);
 
 			$this->set([
 				'item' => $item,

@@ -12,7 +12,7 @@ class ShopTable extends Table
      * @param array $data is input data email and password.
      * @return object 
      */
-	public function findShop($data = [])
+	public function checkLoginForShop($data = [])
 	{
 		$shop = $this->find('all', [
 			'conditions' => [

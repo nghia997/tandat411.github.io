@@ -20,7 +20,7 @@ class ItemTable extends Table
      * @param int $id is the id of item
      * @return object $item if exist else return null
      */
-	public function findItem($id)
+	public function findItemById($id)
 	{
 		$item = $this->find('all', [
 			'conditions' => ['id' => $id]

@@ -50,14 +50,14 @@ class PagesController extends AppController
     {
         $this->set('title', 'Chat room');
         $client = $this->request->getSession()->read('Auth.User');
-        $item = $this->Item->findItem($itemId);
+        $item = $this->Item->findItemById($itemId);
         $shop = $this->Shop->get($item->shop);
 
         if ($item != null) {
             // Create new room id
             $roomId = $client['name'] . $client['id'] . $item->id;
             // Check this Room has exist or not. If not, create new Room
-            if (!$this->Chat->findRoom($roomId)) {
+            if (!$this->Chat->getFirstChatInRoom($roomId)) {
                 $data = [
                     'itemId' => $item->id ,
                     'shopId' => $item->shop, 
@@ -70,7 +70,7 @@ class PagesController extends AppController
                 $this->Chat->insert($data);
             }
 
-            $listChat = $this->Chat->getRoom($roomId);
+            $listChat = $this->Chat->getAllChatInRoom($roomId);
             $this->set([
                 'item' => $item, 
                 'shop' => $shop,
@@ -109,7 +109,7 @@ class PagesController extends AppController
             if ($validate->errors()) {
                 $this->set($validate->errors());
             // Check login by account of Shop and redirect to Index page if success
-            } else if ($shop = $this->Shop->findShop($input) != null) {
+            } else if ($shop = $this->Shop->checkLoginForShop($input) != null) {
                 // Change to Model Shop to check authenticate.
                 $this->Auth->config('authenticate', [
                     'Form' => ['userModel' => 'Shop']

@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"C:/xampp/htdocs/tandat411.github.io/Task PHP/Week-10/vagrant","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
